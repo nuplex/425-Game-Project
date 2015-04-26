@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 	Vector3 offset;
+	Vector3 zoomOffset;
 
 	// Use this for initialization
 	void Start () {
@@ -11,25 +12,18 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveVertical = Input.GetAxis ("Vertical");
+		float zoom = Input.GetAxis ("Mouse ScrollWheel");
+		
+		offset = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		zoomOffset = new Vector3 (0.0f, zoom, 0.0f);
+		
+		transform.position += offset;
+		transform.position += zoomOffset;
 	}
 
 	void LateUpdate(){
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
 
-		offset = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-
-		transform.position += offset;
-
-		/*if (Input.GetKey ("w")) {
-			offset += Inp
-		} else if (Input.GetKey ("a")) {
-			
-		} else if (Input.GetKey ("s")) {
-			
-		} else if (Input.GetKey ("d")) {
-			
-		}*/
 	}
 }
