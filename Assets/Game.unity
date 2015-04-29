@@ -1002,7 +1002,7 @@ GameObject:
   - 114: {fileID: 584853034}
   - 114: {fileID: 584853033}
   m_Layer: 5
-  m_Name: Destroy
+  m_Name: DestroyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1082,7 +1082,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 584853035}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 305509554}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1219806653}
+        m_MethodName: setCursorToDestroyIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &584853035
@@ -1624,7 +1648,7 @@ GameObject:
   - 114: {fileID: 923829848}
   - 114: {fileID: 923829847}
   m_Layer: 5
-  m_Name: Path
+  m_Name: PathButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1704,7 +1728,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923829849}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 305509554}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1219806653}
+        m_MethodName: setCursorToPathIcon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &923829849
@@ -2426,6 +2474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorsPanel: {fileID: 305509554}
+  pathTexture: {fileID: 2800000, guid: ee03acf05d65b0342838709584f00547, type: 3}
+  destroyTexture: {fileID: 2800000, guid: b45f981480107154fb782f4a44e8e977, type: 3}
+  defaultTexture: {fileID: 2800000, guid: 3361c327f6ca8b94db24dbcf104e96cc, type: 3}
 --- !u!4 &1219806654
 Transform:
   m_ObjectHideFlags: 0
@@ -3392,6 +3443,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1219806653}
         m_MethodName: toggleColorsPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1219806653}
+        m_MethodName: setCursorToDefaultIcon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
