@@ -13,54 +13,70 @@ public class CameraManager : MonoBehaviour {
 	public float minZoomFOV = 10.0f;
 	public float maxZoomFOV = 120.0f;
 	public float standardZoom = 60.0f;
+	public float moveSpeed = 20.0f;
+
+	Vector3 forward, backward, left, right;
 
 	private Camera[] cams;
 	private Camera activeCamera;
 	private int currentCam;
 	private const int CAM_NE = 1, CAM_SE = 2, CAM_SW = 3, CAM_NW = 4;
 
-	//private const int CAM_CHANGE_DELAY = 8; //fps
-	//private int camChangeDelay = CAM_CHANGE_DELAY;
-
-	//private bool canChangeCam = true;
-
-
 	// Use this for initialization
 	void Start () {
-		currentCam = CAM_NE;
-		activeCamera = camNE;
-		camNE.enabled = true;
+		currentCam = 0;
+		activeCamera = camSW;
+		camNE.enabled = false;
 		camSE.enabled = false;
-		camSW.enabled = false;
+		camSW.enabled = true;
 		camNW.enabled = false;
-		cams = new Camera[4]{camNE, camSE, camSW, camNW};
+		cams = new Camera[4]{camSW, camSE, camNE, camNW};
 		offset = new Vector3 (0.0f, 0.0f, 0.0f);
+		setDirections ();
 	}
-	
+
+	// sets movement directions for all four cameras based on which one is active
+	void setDirections() {
+		forward = activeCamera.transform.forward;
+		forward = Quaternion.AngleAxis (-20, activeCamera.transform.right) * forward;
+		Debug.Log (forward.ToString ("F4"));
+		right = activeCamera.transform.right;
+		left = -activeCamera.transform.right;
+		backward = -forward;
+	}
+
 	// Update is called once per frame
 	void Update () {
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-		
-		ControlsByCam(currentCam, moveHorizontal, moveVertical);
-		
-		//if (canChangeCam) {
-		//	canChangeCam = false;
-			//View Change
-			if (Input.GetKeyDown ("q")) {
-				ChangeCam(PrevCam ());
-			} else if (Input.GetKeyDown ("e")) {
-				ChangeCam(NextCam ());
+
+		if (Input.GetKeyDown ("q")) {
+			ChangeCam(PrevCam ());
+			setDirections ();
+		} else if (Input.GetKeyDown ("e")) {
+			ChangeCam(NextCam ());
+			setDirections ();
+		}
+
+		if (Input.GetKey("w")) {
+			for (int i = 0; i < cams.Length; i++) {
+				cams[i].transform.Translate(forward * moveSpeed * Time.deltaTime, Space.World);
 			}
-		//}
-		
-		/*if (!canChangeCam) {
-			camChangeDelay--;
-			if(camChangeDelay < 0){
-				canChangeCam = true;
-				camChangeDelay = CAM_CHANGE_DELAY;
+		}
+		if (Input.GetKey("s")) {
+			for (int i = 0; i < cams.Length; i++) {
+				cams[i].transform.Translate(backward * moveSpeed * Time.deltaTime, Space.World);
 			}
-		}*/
+		}
+		if (Input.GetKey("a")) {
+			for (int i = 0; i < cams.Length; i++) {
+				cams[i].transform.Translate(left * moveSpeed * Time.deltaTime, Space.World);
+			}
+		}
+		if (Input.GetKey("d")) {
+			for (int i = 0; i < cams.Length; i++) {
+				cams[i].transform.Translate(right * moveSpeed * Time.deltaTime, Space.World);
+			}
+		}
+
 
 		//Zooming
 		float zoomDir = Input.GetAxis ("Mouse ScrollWheel");
@@ -80,10 +96,10 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	void ChangeCam(int cam){
-		activeCamera = cams[cam - 1];
+		activeCamera = cams[cam];
 		activeCamera.enabled = true;
 		for (int i = 0; i < cams.Length; i++) {
-			if(i == cam - 1){
+			if(i == cam){
 				continue;
 			}
 			cams[i].enabled = false;
@@ -91,22 +107,26 @@ public class CameraManager : MonoBehaviour {
 	}
 	
 	private int NextCam(){
-		if (currentCam >= CAM_NW) {
+		currentCam = (currentCam + 1) % 4;
+		return currentCam;
+		/*if (currentCam >= CAM_NW) {
 			currentCam = CAM_NE;
 		} else {
 			currentCam += 1;
 		}
-		return  currentCam;
+		return currentCam;*/
 	}
 	
 	
 	private int PrevCam(){
-		if (currentCam <= CAM_NE) {
+		currentCam = (currentCam + 3) % 4;
+		return currentCam;
+		/*if (currentCam <= CAM_NE) {
 			currentCam = CAM_NW;
 		} else {
 			currentCam -= 1;
 		}
-		return currentCam;
+		return currentCam;*/
 	}
 
 	void ControlsByCam(int cam, float moveHorizontal, float moveVertical){
