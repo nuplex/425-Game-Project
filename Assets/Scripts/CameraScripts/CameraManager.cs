@@ -28,7 +28,11 @@ public class CameraManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentCam = CAM_NE;
-		ChangeCam (CAM_NE);
+		activeCamera = camNE;
+		camNE.enabled = true;
+		camSE.enabled = false;
+		camSW.enabled = false;
+		camNW.enabled = false;
 		cams = new Camera[4]{camNE, camSE, camSW, camNW};
 		offset = new Vector3 (0.0f, 0.0f, 0.0f);
 	}
@@ -111,9 +115,9 @@ public class CameraManager : MonoBehaviour {
 		} else if (cam == CAM_SE) {
 			offset = new Vector3 (-moveVertical, 0.0f, moveHorizontal);
 		} else if (cam == CAM_SW) {
-			offset = new Vector3 (moveVertical, 0.0f, -moveHorizontal);
-		} else if (cam == CAM_NE) {
 			offset = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		} else if (cam == CAM_NW) {
+			offset = new Vector3 (moveVertical, 0.0f, -moveHorizontal);
 		}
 
 		for (int i = 0; i < cams.Length; i++) {
