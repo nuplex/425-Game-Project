@@ -28,7 +28,7 @@ public class CameraManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentCam = CAM_NE;
-		activeCamera = camNE;
+		ChangeCam (CAM_NE);
 		cams = new Camera[4]{camNE, camSE, camSW, camNW};
 		offset = new Vector3 (0.0f, 0.0f, 0.0f);
 	}
