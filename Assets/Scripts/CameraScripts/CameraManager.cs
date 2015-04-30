@@ -19,10 +19,10 @@ public class CameraManager : MonoBehaviour {
 	private int currentCam;
 	private const int CAM_NE = 1, CAM_SE = 2, CAM_SW = 3, CAM_NW = 4;
 
-	private const int CAM_CHANGE_DELAY = 8; //fps
-	private int camChangeDelay = CAM_CHANGE_DELAY;
+	//private const int CAM_CHANGE_DELAY = 8; //fps
+	//private int camChangeDelay = CAM_CHANGE_DELAY;
 
-	private bool canChangeCam = true;
+	//private bool canChangeCam = true;
 
 
 	// Use this for initialization
@@ -40,23 +40,23 @@ public class CameraManager : MonoBehaviour {
 		
 		ControlsByCam(currentCam, moveHorizontal, moveVertical);
 		
-		if (canChangeCam) {
-			canChangeCam = false;
+		//if (canChangeCam) {
+		//	canChangeCam = false;
 			//View Change
-			if (Input.GetKey ("q")) {
+			if (Input.GetKeyDown ("q")) {
 				ChangeCam(PrevCam ());
-			} else if (Input.GetKey ("e")) {
+			} else if (Input.GetKeyDown ("e")) {
 				ChangeCam(NextCam ());
 			}
-		}
+		//}
 		
-		if (!canChangeCam) {
+		/*if (!canChangeCam) {
 			camChangeDelay--;
 			if(camChangeDelay < 0){
 				canChangeCam = true;
 				camChangeDelay = CAM_CHANGE_DELAY;
 			}
-		}
+		}*/
 
 		//Zooming
 		float zoomDir = Input.GetAxis ("Mouse ScrollWheel");
