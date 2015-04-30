@@ -2815,8 +2815,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camNE: {fileID: 949688428}
   camSE: {fileID: 1040588914}
-  camSW: {fileID: 2089622911}
-  camNW: {fileID: 1925205738}
+  camSW: {fileID: 1925205738}
+  camNW: {fileID: 2089622911}
   zoomSpeed: 20
   minZoomFOV: 10
   maxZoomFOV: 120
