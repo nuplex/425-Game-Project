@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - ColorsPanel
+  - NECam
+  - NWCam
+  - SWCam
+  - SECam
   layers:
   - Default
   - TransparentFX

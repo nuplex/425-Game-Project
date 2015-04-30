@@ -31,8 +31,6 @@ public class CameraController : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
-		print (ROTATE_DELAY);
-
 		ControlsByView (currentView, moveHorizontal, moveVertical);
 
 		if (canPressRotate) {
