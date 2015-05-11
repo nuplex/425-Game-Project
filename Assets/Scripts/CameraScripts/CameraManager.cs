@@ -18,12 +18,18 @@ public class CameraManager : MonoBehaviour {
 	Vector3 forward, backward, left, right;
 
 	private Camera[] cams;
+	private Camera[] naturalSet;
+	private Camera[] unnaturalSet;
+
 	private Camera activeCamera;
 	private int currentCam;
 	private const int CAM_NE = 1, CAM_SE = 2, CAM_SW = 3, CAM_NW = 4;
 
+	private bool naturalMode;
+
 	// Use this for initialization
 	void Start () {
+		naturalMode = true;
 		currentCam = 0;
 		activeCamera = camSW;
 		camNE.enabled = false;
@@ -31,6 +37,8 @@ public class CameraManager : MonoBehaviour {
 		camSW.enabled = true;
 		camNW.enabled = false;
 		cams = new Camera[4]{camSW, camSE, camNE, camNW};
+		naturalSet = new Camera[4]{camSW, camSE, camNE, camNW};
+		unnaturalSet = new Camera[4]{camNE, camSE, camSW, camNW};
 		offset = new Vector3 (0.0f, 0.0f, 0.0f);
 		setDirections ();
 	}
@@ -49,31 +57,65 @@ public class CameraManager : MonoBehaviour {
 
 		if (Input.GetKeyDown ("q")) {
 			ChangeCam(PrevCam ());
-			setDirections ();
+			if(naturalMode){
+				setDirections ();
+			}
 		} else if (Input.GetKeyDown ("e")) {
 			ChangeCam(NextCam ());
-			setDirections ();
+			if(naturalMode){
+				setDirections ();
+			}
 		}
 
-		if (Input.GetKey("w")) {
-			for (int i = 0; i < cams.Length; i++) {
-				cams[i].transform.Translate(forward * moveSpeed * Time.deltaTime, Space.World);
+		//switch between camera modes
+		if (Input.GetKeyDown ("n")) {
+			if(naturalMode == false){
+				currentCam = 0;
+				naturalMode = true;
+				cams = naturalSet;
+				activeCamera = camSW;
+				camNE.enabled = false;
+				camSE.enabled = false;
+				camSW.enabled = true;
+				camNW.enabled = false;
+			} else {
+				currentCam = CAM_NE;
+				activeCamera = camNE;
+				camNE.enabled = true;
+				camSE.enabled = false;
+				camSW.enabled = false;
+				camNW.enabled = false;
+				naturalMode = false;
+				cams = unnaturalSet;
 			}
 		}
-		if (Input.GetKey("s")) {
-			for (int i = 0; i < cams.Length; i++) {
-				cams[i].transform.Translate(backward * moveSpeed * Time.deltaTime, Space.World);
+
+		if (naturalMode) {
+			if (Input.GetKey ("w")) {
+				for (int i = 0; i < cams.Length; i++) {
+					cams [i].transform.Translate (forward * moveSpeed * Time.deltaTime, Space.World);
+				}
 			}
-		}
-		if (Input.GetKey("a")) {
-			for (int i = 0; i < cams.Length; i++) {
-				cams[i].transform.Translate(left * moveSpeed * Time.deltaTime, Space.World);
+			if (Input.GetKey ("s")) {
+				for (int i = 0; i < cams.Length; i++) {
+					cams [i].transform.Translate (backward * moveSpeed * Time.deltaTime, Space.World);
+				}
 			}
-		}
-		if (Input.GetKey("d")) {
-			for (int i = 0; i < cams.Length; i++) {
-				cams[i].transform.Translate(right * moveSpeed * Time.deltaTime, Space.World);
+			if (Input.GetKey ("a")) {
+				for (int i = 0; i < cams.Length; i++) {
+					cams [i].transform.Translate (left * moveSpeed * Time.deltaTime, Space.World);
+				}
 			}
+			if (Input.GetKey ("d")) {
+				for (int i = 0; i < cams.Length; i++) {
+					cams [i].transform.Translate (right * moveSpeed * Time.deltaTime, Space.World);
+				}
+			}
+		} else {
+			float moveHorizontal = Input.GetAxis ("Horizontal");
+			float moveVertical = Input.GetAxis ("Vertical");
+			
+			ControlsByCam(currentCam, moveHorizontal, moveVertical);
 		}
 
 
@@ -97,37 +139,53 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	void ChangeCam(int cam){
-		activeCamera = cams[cam];
+		if (naturalMode) {
+			activeCamera = cams [cam];
+		} else {
+			activeCamera = cams [cam - 1];
+		}
 		activeCamera.enabled = true;
 		for (int i = 0; i < cams.Length; i++) {
-			if(i == cam){
-				continue;
+			if(naturalMode){
+				if(i == cam){
+					continue;
+				}
+			} else {
+				if(i == cam - 1){
+					continue;
+				}
 			}
 			cams[i].enabled = false;
 		}
 	}
 	
 	private int NextCam(){
-		currentCam = (currentCam + 1) % 4;
-		return currentCam;
-		/*if (currentCam >= CAM_NW) {
-			currentCam = CAM_NE;
+		if (naturalMode) {
+			currentCam = (currentCam + 1) % 4;
+			return currentCam;
 		} else {
-			currentCam += 1;
+			if (currentCam >= CAM_NW) {
+				currentCam = CAM_NE;
+			} else {
+				currentCam += 1;
+			}
+			return currentCam;
 		}
-		return currentCam;*/
 	}
 	
 	
 	private int PrevCam(){
-		currentCam = (currentCam + 3) % 4;
-		return currentCam;
-		/*if (currentCam <= CAM_NE) {
-			currentCam = CAM_NW;
+		if (naturalMode) {
+			currentCam = (currentCam + 3) % 4;
+			return currentCam;
 		} else {
-			currentCam -= 1;
+			if (currentCam <= CAM_NE) {
+				currentCam = CAM_NW;
+			} else {
+				currentCam -= 1;
+			}
+			return currentCam;
 		}
-		return currentCam;*/
 	}
 
 	void ControlsByCam(int cam, float moveHorizontal, float moveVertical){
