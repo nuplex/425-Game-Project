@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour {
 	void setDirections() {
 		forward = activeCamera.transform.forward;
 		forward = Quaternion.AngleAxis (-20, activeCamera.transform.right) * forward;
-		Debug.Log (forward.ToString ("F4"));
 		right = activeCamera.transform.right;
 		left = -activeCamera.transform.right;
 		backward = -forward;
@@ -80,7 +79,6 @@ public class CameraManager : MonoBehaviour {
 
 		//Zooming
 		float zoomDir = Input.GetAxis ("Mouse ScrollWheel");
-		print (zoomDir);
 		if (zoomDir < 0) {
 			Zoom (false);
 		} else  if (zoomDir > 0) {
@@ -93,6 +91,9 @@ public class CameraManager : MonoBehaviour {
 				cams[i].fieldOfView = standardZoom;
 			}
 		}
+
+		Ray ray = activeCamera.ScreenPointToRay (Input.mousePosition);
+		Debug.DrawRay (ray.origin, ray.direction, Color.green);
 	}
 
 	void ChangeCam(int cam){
