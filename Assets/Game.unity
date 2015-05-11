@@ -2728,7 +2728,6 @@ GameObject:
   - 4: {fileID: 1219806654}
   - 114: {fileID: 1219806653}
   - 114: {fileID: 1219806655}
-  - 114: {fileID: 1219806656}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2775,42 +2774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCursor: {fileID: 2800000, guid: 3361c327f6ca8b94db24dbcf104e96cc, type: 3}
---- !u!114 &1219806656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1219806652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f270fc4698828d04aa82045645f882b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plane: {fileID: 0}
-  showMain: 1
-  showSub: 0
-  gridSizeX: 0
-  gridSizeY: 0
-  gridSizeZ: 0
-  smallStep: 0
-  largeStep: 0
-  startX: 0
-  startY: 0
-  startZ: 0
-  offsetY: 0
-  scrollRate: .100000001
-  lastScroll: 0
-  lineMaterial: {fileID: 0}
-  mainColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  subColor:
-    r: 0
-    g: .5
-    b: 0
-    a: 1
 --- !u!1 &1222434551
 GameObject:
   m_ObjectHideFlags: 0
