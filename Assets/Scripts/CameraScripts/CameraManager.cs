@@ -135,7 +135,7 @@ public class CameraManager : MonoBehaviour {
 		}
 
 		Ray ray = activeCamera.ScreenPointToRay (Input.mousePosition);
-		Debug.DrawRay (ray.origin, ray.direction, Color.green);
+		Debug.DrawRay (ray.origin, ray.direction, Color.black);
 	}
 
 	void ChangeCam(int cam){
