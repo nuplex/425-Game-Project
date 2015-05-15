@@ -61,15 +61,18 @@ public class CameraManager : MonoBehaviour {
 			Vector3 pivotToPoint = hit.point - plane.transform.position;
 			float tileX = pivotToPoint.x / cellWidth;
 			float tileZ = pivotToPoint.z / cellWidth;
-			tileX = Mathf.Round(tileX);
-			tileZ = Mathf.Round(tileZ);
-			float worldX = plane.transform.position.x + tileX * cellWidth;
-			float worldZ = plane.transform.position.z + tileZ * cellWidth;
+			tileX = Mathf.Floor(tileX);
+			tileZ = Mathf.Floor(tileZ);
+			float worldX = plane.transform.position.x + tileX * cellWidth + cellWidth / 2.0f;
+			float worldZ = plane.transform.position.z + tileZ * cellWidth + cellWidth / 2.0f;
+			Debug.DrawLine(new Vector3 (0,0,0), new Vector3 (worldX, 0, worldZ));
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		placeObject ();
 
 		if (Input.GetKeyDown ("q")) {
 			ChangeCam(PrevCam ());
