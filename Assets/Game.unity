@@ -299,6 +299,7 @@ GameObject:
   - 33: {fileID: 242249009}
   - 64: {fileID: 242249008}
   - 23: {fileID: 242249007}
+  - 114: {fileID: 242249010}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -361,6 +362,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242249005}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &242249010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 242249005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f24aa3aa7761a040845e718154fc1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 242249005}
+  showMain: 1
+  showSub: 1
+  gridSizeX: 100
+  gridSizeY: 100
+  gridSizeZ: 100
+  smallStep: 1
+  largeStep: 0
+  startX: 0
+  startY: 0
+  startZ: 0
 --- !u!1 &291449039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1965,7 @@ GameObject:
   - 124: {fileID: 949688427}
   - 92: {fileID: 949688426}
   - 81: {fileID: 949688425}
+  - 114: {fileID: 949688429}
   m_Layer: 0
   m_Name: NECam
   m_TagString: NECam
@@ -1955,8 +1979,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 949688423}
-  m_LocalRotation: {x: -.0664523989, y: .909843445, z: -.160429984, w: -.376870215}
-  m_LocalPosition: {x: 50, y: 0, z: 50}
+  m_LocalRotation: {x: -.0990459323, y: .892398834, z: -.239117578, w: -.369644403}
+  m_LocalPosition: {x: 50, y: 5, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 932273068}
@@ -2014,6 +2038,28 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!114 &949688429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949688423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f24aa3aa7761a040845e718154fc1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 0}
+  showMain: 0
+  showSub: 1
+  gridSizeX: 100
+  gridSizeY: 0
+  gridSizeZ: 100
+  smallStep: 1
+  largeStep: 0
+  startX: -50
+  startY: 0
+  startZ: -50
 --- !u!1 &972300478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,6 +2408,7 @@ GameObject:
   - 124: {fileID: 1040588913}
   - 92: {fileID: 1040588912}
   - 81: {fileID: 1040588911}
+  - 114: {fileID: 1040588916}
   m_Layer: 0
   m_Name: SECam
   m_TagString: SECam
@@ -2434,6 +2481,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 932273068}
   m_RootOrder: 1
+--- !u!114 &1040588916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1040588910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f24aa3aa7761a040845e718154fc1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 242249005}
+  showMain: 0
+  showSub: 1
+  gridSizeX: 100
+  gridSizeY: 0
+  gridSizeZ: 100
+  smallStep: 1
+  largeStep: 0
+  startX: -50
+  startY: 0
+  startZ: -50
 --- !u!1 &1058007385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,6 +3008,7 @@ MonoBehaviour:
   maxZoomFOV: 120
   standardZoom: 60
   moveSpeed: 20
+  plane: {fileID: 242249005}
 --- !u!1 &1271565332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,6 +4095,7 @@ GameObject:
   - 124: {fileID: 1925205737}
   - 92: {fileID: 1925205736}
   - 81: {fileID: 1925205735}
+  - 114: {fileID: 1925205739}
   m_Layer: 0
   m_Name: SWCam
   m_TagString: SWCam
@@ -4097,6 +4168,28 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!114 &1925205739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1925205733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f24aa3aa7761a040845e718154fc1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 242249005}
+  showMain: 0
+  showSub: 1
+  gridSizeX: 100
+  gridSizeY: 0
+  gridSizeZ: 100
+  smallStep: 1
+  largeStep: 0
+  startX: -50
+  startY: 0
+  startZ: -50
 --- !u!1 &1950877281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,6 +4268,7 @@ GameObject:
   - 124: {fileID: 2089622910}
   - 92: {fileID: 2089622909}
   - 81: {fileID: 2089622908}
+  - 114: {fileID: 2089622912}
   m_Layer: 0
   m_Name: NWCam
   m_TagString: NWCam
@@ -4247,3 +4341,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!114 &2089622912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089622906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f24aa3aa7761a040845e718154fc1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 242249005}
+  showMain: 0
+  showSub: 1
+  gridSizeX: 100
+  gridSizeY: 0
+  gridSizeZ: 100
+  smallStep: 1
+  largeStep: 0
+  startX: -50
+  startY: 0
+  startZ: -50
