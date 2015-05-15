@@ -27,6 +27,8 @@ public class CameraManager : MonoBehaviour {
 
 	private bool naturalMode;
 
+	public GameObject plane;
+
 	// Use this for initialization
 	void Start () {
 		naturalMode = true;
@@ -50,6 +52,20 @@ public class CameraManager : MonoBehaviour {
 		right = activeCamera.transform.right;
 		left = -activeCamera.transform.right;
 		backward = -forward;
+	}
+
+	void placeObject () {
+		RaycastHit hit;
+		float cellWidth = 1.0f;
+		if (Physics.Raycast (activeCamera.transform.position, (activeCamera.ScreenPointToRay (Input.mousePosition).direction), out hit)) {
+			Vector3 pivotToPoint = hit.point - plane.transform.position;
+			float tileX = pivotToPoint.x / cellWidth;
+			float tileZ = pivotToPoint.z / cellWidth;
+			tileX = Mathf.Round(tileX);
+			tileZ = Mathf.Round(tileZ);
+			float worldX = plane.transform.position.x + tileX * cellWidth;
+			float worldZ = plane.transform.position.z + tileZ * cellWidth;
+		}
 	}
 
 	// Update is called once per frame
