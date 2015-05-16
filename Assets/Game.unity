@@ -761,6 +761,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: newCube
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: setPlacing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &316357112
@@ -1120,7 +1144,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1219806653}
-        m_MethodName: setCursorToDestroyIcon
+        m_MethodName: setCursorToDestroy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1882,7 +1906,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1219806653}
-        m_MethodName: setCursorToPathIcon
+        m_MethodName: setCursorToPath
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1979,8 +2003,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 949688423}
-  m_LocalRotation: {x: -.0990459323, y: .892398834, z: -.239117578, w: -.369644403}
-  m_LocalPosition: {x: 50, y: 5, z: 50}
+  m_LocalRotation: {x: -.0664523989, y: .909843445, z: -.160429984, w: -.376870215}
+  m_LocalPosition: {x: 50, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 932273068}
@@ -2933,6 +2957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorsPanel: {fileID: 305509554}
+  cube: {fileID: 181058, guid: 5b9ecb60b7be2fb43be04d232fad98c3, type: 2}
   pathTexture: {fileID: 2800000, guid: ee03acf05d65b0342838709584f00547, type: 3}
   destroyTexture: {fileID: 2800000, guid: b45f981480107154fb782f4a44e8e977, type: 3}
   defaultTexture: {fileID: 2800000, guid: 3361c327f6ca8b94db24dbcf104e96cc, type: 3}
@@ -2943,7 +2968,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1219806652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 501.919891, y: 475.927155, z: 142.38739}
+  m_LocalPosition: {x: 0, y: .5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3008,7 +3033,9 @@ MonoBehaviour:
   maxZoomFOV: 120
   standardZoom: 60
   moveSpeed: 20
+  placing: 0
   plane: {fileID: 242249005}
+  cubeMaster: {fileID: 181058, guid: 5b9ecb60b7be2fb43be04d232fad98c3, type: 2}
 --- !u!1 &1271565332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,7 +4052,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1219806653}
-        m_MethodName: setCursorToDefaultIcon
+        m_MethodName: setCursorToDefault
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

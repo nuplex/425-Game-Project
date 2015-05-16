@@ -26,11 +26,15 @@ public class CameraManager : MonoBehaviour {
 	private const int CAM_NE = 1, CAM_SE = 2, CAM_SW = 3, CAM_NW = 4;
 
 	private bool naturalMode;
+	public bool placing;
 
 	public GameObject plane;
+	public GameObject cubeMaster;
+	GameObject cube;
 
 	// Use this for initialization
 	void Start () {
+		placing = false;
 		naturalMode = true;
 		currentCam = 0;
 		activeCamera = camSW;
@@ -45,6 +49,15 @@ public class CameraManager : MonoBehaviour {
 		setDirections ();
 	}
 
+	public void setPlacing (bool placingIn) {
+		placing = placingIn;
+	}
+
+	public void newCube () {
+		cube = (GameObject) Instantiate (cubeMaster);
+		cube.transform.position = new Vector3 (5, 5, 5);
+	}
+
 	// sets movement directions for all four cameras based on which one is active
 	void setDirections() {
 		forward = activeCamera.transform.forward;
@@ -55,23 +68,27 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	void placeObject () {
-		RaycastHit hit;
-		float cellWidth = 1.0f;
-		if (Physics.Raycast (activeCamera.transform.position, (activeCamera.ScreenPointToRay (Input.mousePosition).direction), out hit)) {
-			Vector3 pivotToPoint = hit.point - plane.transform.position;
-			float tileX = pivotToPoint.x / cellWidth;
-			float tileZ = pivotToPoint.z / cellWidth;
-			tileX = Mathf.Floor(tileX);
-			tileZ = Mathf.Floor(tileZ);
-			float worldX = plane.transform.position.x + tileX * cellWidth + cellWidth / 2.0f;
-			float worldZ = plane.transform.position.z + tileZ * cellWidth + cellWidth / 2.0f;
-			Debug.DrawLine(new Vector3 (0,0,0), new Vector3 (worldX, 0, worldZ));
+		if (placing) {
+			RaycastHit hit;
+			float cellWidth = 1.0f;
+			if (Physics.Raycast (activeCamera.transform.position, (activeCamera.ScreenPointToRay (Input.mousePosition).direction), out hit)) {
+				Vector3 pivotToPoint = hit.point - plane.transform.position;
+				float tileX = pivotToPoint.x / cellWidth;
+				float tileZ = pivotToPoint.z / cellWidth;
+				tileX = Mathf.Floor(tileX);
+				tileZ = Mathf.Floor(tileZ);
+				float worldX = plane.transform.position.x + tileX * cellWidth + cellWidth / 2.0f;
+				float worldZ = plane.transform.position.z + tileZ * cellWidth + cellWidth / 2.0f;
+				Debug.DrawLine(new Vector3 (0,0,0), new Vector3 (worldX, 0, worldZ));
+				cube.transform.position = new Vector3(worldX, 0.5f, worldZ);
+			}
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 
+		placing = true;
 		placeObject ();
 
 		if (Input.GetKeyDown ("q")) {
