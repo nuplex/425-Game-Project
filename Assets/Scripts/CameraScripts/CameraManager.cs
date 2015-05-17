@@ -71,9 +71,40 @@ public class CameraManager : MonoBehaviour {
 		resetHighlight ();
 	}
 
-	public void newCube () {
+	public void newCube (string type) {
 		if (!placing) {
-			cube = (GameObject) Instantiate (cubeMaster);
+			switch (type) {
+			case "rA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "rAA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "rAAA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "gA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "gAA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "gAAA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "bA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "bAA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "bAAA":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			case "yS":
+				cube = (GameObject) Instantiate (cubeMaster);
+				break;
+			}
 		}
 	}
 
