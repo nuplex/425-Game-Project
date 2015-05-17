@@ -84,12 +84,12 @@ public class CameraManager : MonoBehaviour {
 
 	public void setDestroying (bool destroyingIn) {
 		destroying = destroyingIn;
-		//Destroy (cube);
+		Destroy (cube);
 		resetHighlight ();
 	}
 
 	public void newCube (string type) {
-		Destroy (cube);
+		//Destroy (cube);
 		if (!placing) {
 			switch (type) {
 			case "rA":
