@@ -79,7 +79,7 @@ public class CameraManager : MonoBehaviour {
 
 	public void setDestroying (bool destroyingIn) {
 		destroying = destroyingIn;
-		Destroy (cube);
+		//Destroy (cube);
 		resetHighlight ();
 	}
 
@@ -87,33 +87,43 @@ public class CameraManager : MonoBehaviour {
 		if (!placing) {
 			switch (type) {
 			case "rA":
+				cubeMaster = rA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "rAA":
+				cubeMaster = rAA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "rAAA":
+				cubeMaster = rAAA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "gA":
+				cubeMaster = gA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "gAA":
+				cubeMaster = gAA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "gAAA":
+				cubeMaster = gAAA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "bA":
+				cubeMaster = bA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "bAA":
+				cubeMaster = bAA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "bAAA":
+				cubeMaster = bAAA;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			case "yS":
+				cubeMaster = yS;
 				cube = (GameObject) Instantiate (cubeMaster);
 				break;
 			}
@@ -149,18 +159,20 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
+	// expects cube to be instantiated. places a cube on mouseup and immediately creates another one to use as the silhouette.
 	void placeObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
 			Cursor.visible = false;
 			Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
+			cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
 			if (Input.GetMouseButtonUp (0)) {
 				int gridX = (int)(p.x+49.5);
 				int gridZ = (int)(p.z+49.5);
 				if (grid[gridX,gridZ] == null) {
-					cube = (GameObject) Instantiate (cubeMaster);
-					cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
+					//cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
 					grid[gridX,gridZ] = cube;
+					cube = (GameObject) Instantiate (cubeMaster);
 				}
 			}
 		} else {
