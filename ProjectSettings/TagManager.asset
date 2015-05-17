@@ -9,6 +9,14 @@ TagManager:
   - NWCam
   - SWCam
   - SECam
+  - Red Gro
+  - Blue Gro
+  - Green Gro
+  - Yellow Gro
+  - Red Blop
+  - Blue Blop
+  - Green Blop
+  - Yellow Blop
   layers:
   - Default
   - TransparentFX
