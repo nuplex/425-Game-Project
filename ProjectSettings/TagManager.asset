@@ -9,14 +9,21 @@ TagManager:
   - NWCam
   - SWCam
   - SECam
-  - Red Gro
-  - Blue Gro
-  - Green Gro
-  - Yellow Gro
+  - Red Gro A
+  - Blue Gro A
+  - Green Gro A
+  - Yellow Gro A
   - Red Blop
   - Blue Blop
   - Green Blop
   - Yellow Blop
+  - Red Gro AA
+  - Red Gro AAA
+  - Blue Gro AA
+  - Blue Gro AAA
+  - Green Gro AA
+  - Green Gro AAA
+  - Red Gro
   layers:
   - Default
   - TransparentFX
