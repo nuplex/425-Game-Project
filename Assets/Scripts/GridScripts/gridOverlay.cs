@@ -26,7 +26,7 @@ public class gridOverlay : MonoBehaviour {
 	private Material lineMaterial;
 	
 	private Color mainColor = new Color(0.5f,0.5f,0.5f,1f);
-	private Color subColor = new Color(0.5f,0.5f,0.5f,1f);
+	private Color subColor = new Color(1.0f,1.0f,1.0f,1f);
 	
 	void Start () 
 	{
