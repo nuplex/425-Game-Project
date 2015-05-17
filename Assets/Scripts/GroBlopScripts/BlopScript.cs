@@ -14,7 +14,6 @@ public class BlopScript : MonoBehaviour {
 
 	private float lastTurnX;
 	private float lastTurnZ;
-
 	
 	// Use this for initialization
 	void Start () {
@@ -37,6 +36,7 @@ public class BlopScript : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+
 		float x = transform.position.x;
 		float z = transform.position.z;
 
@@ -75,7 +75,7 @@ public class BlopScript : MonoBehaviour {
 		float z = transform.position.z;
 
 		/* Determining if about to hit edge
-		 * Less than 0.25 means graphically the blop
+		 * Less than 0.5 means graphically the blop
 		 * is about to hit an edge.
 		 * 
 		 * In reality you only need if next grid over is non-path
@@ -120,6 +120,7 @@ public class BlopScript : MonoBehaviour {
 		//if about to go off edge of path, change direction to continue on path
 
 		float x = transform.position.x;
+		float y = transform.position.y;
 		float z = transform.position.z;
 
 		//since we are right now randomly determining, lets tend to stay straigh
@@ -129,16 +130,26 @@ public class BlopScript : MonoBehaviour {
 		}
 
 		//for testing just randomly change direction
+		//Vector3 reset; //put in middle.
 		int dir = (int) Random.Range(1,5);
-		if(dir == X_POS){
+		if (dir == X_POS) {
 			currDir = X_POS;
-		} else if (dir == X_NEG){
+			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
+		} else if (dir == X_NEG) {
 			currDir = X_NEG;
-		} else if (dir == Z_POS){
+			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
+		} else if (dir == Z_POS) {
 			currDir = Z_POS;
-		} else if (dir == Z_NEG){
+			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
+		} else if (dir == Z_NEG) {
 			currDir = Z_NEG;
+			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
+		} else {
+			currDir = X_POS;
+			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
 		}
+
+		//transform.position = reset;
 
 		lastTurnX = x;
 		lastTurnZ = z;

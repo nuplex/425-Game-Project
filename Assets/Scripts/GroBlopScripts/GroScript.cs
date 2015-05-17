@@ -27,9 +27,13 @@ public class GroScript : MonoBehaviour {
 
 	public int purchaseCost;
 
+	public bool placed;
 
 	// Use this for initialization
 	void Start () {
+		if (placed != true){
+			placed = false;
+		}
 		string ct = this.gameObject.tag;
 		if (ct == "Red Gro A") {
 			colorType = RA;
@@ -63,6 +67,9 @@ public class GroScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (!placed) {
+			return;
+		}
 
 		currentOutputWait += outputRate * Time.deltaTime;
 		if (currentOutputWait >= OUTPUT_AT) {
@@ -76,8 +83,6 @@ public class GroScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		print("Entered");
-
 		if (other.gameObject.tag == "Red Blop") {
 			//for now just staticly add
 			currentGrowthAmount += 0.1f;
