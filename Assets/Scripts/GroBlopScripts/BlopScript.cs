@@ -120,7 +120,6 @@ public class BlopScript : MonoBehaviour {
 		//if about to go off edge of path, change direction to continue on path
 
 		float x = transform.position.x;
-		float y = transform.position.y;
 		float z = transform.position.z;
 
 		//since we are right now randomly determining, lets tend to stay straigh
@@ -129,27 +128,33 @@ public class BlopScript : MonoBehaviour {
 			return;
 		}
 
+		float xOffset = (Mathf.Floor (x) + 0.5f) - x;
+		float zOffset = (Mathf.Floor (z) + 0.5f) - z;
+
 		//for testing just randomly change direction
 		//Vector3 reset; //put in middle.
 		int dir = (int) Random.Range(1,5);
-		if (dir == X_POS) {
-			currDir = X_POS;
-			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
-		} else if (dir == X_NEG) {
-			currDir = X_NEG;
-			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
-		} else if (dir == Z_POS) {
-			currDir = Z_POS;
-			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
-		} else if (dir == Z_NEG) {
-			currDir = Z_NEG;
-			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
-		} else {
-			currDir = X_POS;
-			//reset = new Vector3 ((Mathf.Floor (x) + 0.5f), y, (Mathf.Floor (z) + 0.5f));
+		if (currDir == dir) {
+			lastTurnX = x;
+			lastTurnZ = z;
+			return;
 		}
 
-		//transform.position = reset;
+		if (dir == X_POS) {
+			currDir = X_POS;
+			//transform.position += new Vector3(0, 0, zOffset);
+		} else if (dir == X_NEG) {
+			currDir = X_NEG;
+			//transform.position += new Vector3(0, 0, zOffset);
+		} else if (dir == Z_POS) {
+			currDir = Z_POS;
+			//transform.position += new Vector3(xOffset, 0, 0);
+		} else if (dir == Z_NEG) {
+			currDir = Z_NEG;
+			//transform.position += new Vector3(xOffset, 0, 0);
+		} else {
+			currDir = X_POS;
+		}
 
 		lastTurnX = x;
 		lastTurnZ = z;

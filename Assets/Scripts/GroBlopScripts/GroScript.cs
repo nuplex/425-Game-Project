@@ -83,6 +83,10 @@ public class GroScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		if (!placed) {
+			return;
+		}
+
 		if (other.gameObject.tag == "Red Blop") {
 			//for now just staticly add
 			currentGrowthAmount += 0.1f;
