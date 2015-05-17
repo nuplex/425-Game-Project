@@ -175,6 +175,7 @@ public class CameraManager : MonoBehaviour {
 				int gridX = (int)(p.x+49.5);
 				int gridZ = (int)(p.z+49.5);
 				if (grid[gridX,gridZ] == null) {
+					cube.GetComponent<GroScript>().placed = true;
 					//cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
 					grid[gridX,gridZ] = cube;
 					cube = (GameObject) Instantiate (cubeMaster);
