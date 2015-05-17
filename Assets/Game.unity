@@ -773,6 +773,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: newCube
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &316357112
@@ -3443,7 +3455,7 @@ MonoBehaviour:
   moveSpeed: 20
   highlight: {fileID: 352655186}
   plane: {fileID: 242249005}
-  cubeMaster: {fileID: 181058, guid: 5b9ecb60b7be2fb43be04d232fad98c3, type: 2}
+  cubeMaster: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}
 --- !u!1 &1271565332
 GameObject:
   m_ObjectHideFlags: 0
