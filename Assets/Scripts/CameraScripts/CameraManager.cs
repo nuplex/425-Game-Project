@@ -10,10 +10,10 @@ public class CameraManager : MonoBehaviour {
 
 	Vector3 offset;
 
-	public float zoomSpeed = 20.0f;
+	public float zoomSpeed = 1.0f;
 	public float minZoomFOV = 10.0f;
 	public float maxZoomFOV = 120.0f;
-	public float standardZoom = 60.0f;
+	public float standardZoom = 30.0f;
 	public float moveSpeed = 20.0f;
 
 	Vector3 forward, backward, left, right;
@@ -184,7 +184,7 @@ public class CameraManager : MonoBehaviour {
 		} else {
 			Cursor.visible = true;
 			resetHighlight ();
-			//cube.transform.position = new Vector3 (0,activeCamera.maxHeight,)
+			cube.transform.position = new Vector3 (0.0f,maxCamHeight,0.0f);
 			/*p = activeCamera.ScreenPointToRay(Input.mousePosition);
 			cube.transform.position = activeCamera.transform.position + p.direction * 20;*/
 		}
@@ -297,14 +297,11 @@ public class CameraManager : MonoBehaviour {
 		}
 		
 		//reset zoom
-		if (Input.GetKey ("z")) {
+		/*if (Input.GetKey ("z")) {
 			for(int i = 0; i < cams.Length; i++){
 				cams[i].fieldOfView = standardZoom;
 			}
-		}
-
-		Ray ray = activeCamera.ScreenPointToRay (Input.mousePosition);
-		Debug.DrawRay (ray.origin, ray.direction, Color.black);
+		}*/
 	}
 
 	void ChangeCam(int cam){
@@ -377,28 +374,17 @@ public class CameraManager : MonoBehaviour {
 		if (zoomIn) {
 			for (int i = 0; i < cams.Length; i++) {
 				//cams [i].transform.Translate (activeCamera.transform.forward * zoomSpeed * Time.deltaTime, Space.World);
-				Vector3 newPosition = cams[i].transform.position + activeCamera.transform.forward * zoomSpeed;
+				Vector3 newPosition = cams[i].transform.position + activeCamera.transform.forward;
 				if (newPosition.y >= minCamHeight)
-					cams [i].transform.position = cams[i].transform.position + activeCamera.transform.forward * zoomSpeed;
+					cams [i].transform.position = newPosition;
 			}
 		} else if (!zoomIn){
 			for (int i = 0; i < cams.Length; i++) {
 				//cams [i].transform.Translate (-(activeCamera.transform.forward) * zoomSpeed * Time.deltaTime, Space.World);
-				Vector3 newPosition = cams[i].transform.position + activeCamera.transform.forward * zoomSpeed;
+				Vector3 newPosition = cams[i].transform.position + (-(activeCamera.transform.forward));
 				if (newPosition.y <= maxCamHeight)
-					cams [i].transform.position = cams[i].transform.position + -(activeCamera.transform.forward) * zoomSpeed;
+					cams [i].transform.position = newPosition;
 			}
 		}
-		/*for (int i = 0; i < cams.Length; i++) {
-			if (zoomIn) {
-				if (cams[i].fieldOfView >= minZoomFOV) {
-					cams[i].fieldOfView -= zoomSpeed / 8;
-				}
-			} else {
-				if (cams[i].fieldOfView <= maxZoomFOV) {
-					cams[i].fieldOfView += zoomSpeed / 8;
-				}
-			}
-		}*/
 	}
 }
