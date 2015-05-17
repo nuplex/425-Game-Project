@@ -12,7 +12,7 @@ public class GroScript : MonoBehaviour {
 	public float[] growthLevels;
 	public int currentLevel = 0;
 	public float currGrowthNeeded;
-	public int MAX_LEVEL = 200;
+	public int MAX_LEVEL = 2000;
 
 	public int blopsTaken = 0;
 	public int blopsOutput = 0;
@@ -76,7 +76,7 @@ public class GroScript : MonoBehaviour {
 			Output();
 		}
 
-		currentGrowthAmount += 0.01f;//growthRate * Time.deltaTime;
+		currentGrowthAmount += growthRate * Time.deltaTime;//growthRate * Time.deltaTime;
 		if (currentGrowthAmount >= currGrowthNeeded) {
 			Grow ();
 		}
@@ -88,14 +88,61 @@ public class GroScript : MonoBehaviour {
 		}
 
 		if (other.gameObject.tag == "Red Blop") {
-			//for now just staticly add
-			currentGrowthAmount += 0.1f;
+			if(colorType == RA || colorType == RAA || colorType == RAAA){
+				growthRate += 0.0001f;
+				outputRate += 0.0001f;
+			} else if (colorType == BA || colorType == BAA || colorType == BAAA){
+				growthRate += 0.0002f;
+				outputRate += 0.0002f;
+			} else if (colorType == GA || colorType == GAA || colorType == GAAA){
+				growthRate += 0.0002f;
+				outputRate += 0.0002f;
+			} else if (colorType == Y){
+				growthRate += 0.0000f;
+				outputRate += 0.0000f;
+			}
 		} else if (other.gameObject.tag == "Blue Blop") {
-			currentGrowthAmount += 0.1f;
+			if(colorType == RA || colorType == RAA || colorType == RAAA){
+				growthRate += 0.0003f;
+				outputRate += 0.0003f;
+			} else if (colorType == BA || colorType == BAA || colorType == BAAA){
+				growthRate += 0.0002f;
+				outputRate += 0.0002f;
+			} else if (colorType == GA || colorType == GAA || colorType == GAAA){
+				growthRate += 0.0001f;
+				outputRate += 0.0001f;
+			} else if (colorType == Y){
+				growthRate += 0.0000f;
+				outputRate += 0.0000f;
+			}
 		} else if (other.gameObject.tag == "Green Blop") {
-			currentGrowthAmount += 0.1f;
+			if(colorType == RA || colorType == RAA || colorType == RAAA){
+				growthRate += 0.0002f;
+				outputRate += 0.0002f;
+			} else if (colorType == BA || colorType == BAA || colorType == BAAA){
+				growthRate += 0.0001f;
+				outputRate += 0.0001f;
+			} else if (colorType == GA || colorType == GAA || colorType == GAAA){
+				growthRate += 0.00025f;
+				outputRate += 0.00025f;
+			} else if (colorType == Y){
+				growthRate += 0.0000f;
+				outputRate += 0.0000f;
+			}
 		} else if (other.gameObject.tag == "Yellow Blop") {
-			currentGrowthAmount += 0.1f;
+			if(colorType == RA || colorType == RAA || colorType == RAAA){
+				growthRate -= 0.001f;
+				outputRate -= 0.001f;
+			} else if (colorType == BA || colorType == BAA || colorType == BAAA){
+				growthRate += 0.001f;
+				outputRate += 0.001f;
+			} else if (colorType == GA || colorType == GAA || colorType == GAAA){
+				growthRate += 0.001f;
+				outputRate += 0.001f;
+			} else if (colorType == Y){
+				growthRate += 0.000025f;
+				outputRate += 0.000025f;
+			}
 		} 
 
 		Destroy (other.gameObject);
@@ -105,39 +152,39 @@ public class GroScript : MonoBehaviour {
 
 	void SetValues(int colorType){
 		if (colorType == RA) {
-			growthRate = 0.01f;
+			growthRate = 0.1f;
 			outputRate = 0.3f;
 			purchaseCost = 15;
 		} else if (colorType == RAA) {
-			growthRate = 0.012f;
+			growthRate = 0.12f;
 			outputRate = 0.8f;
 			purchaseCost = 100;
 		} else if (colorType == RAAA) {
-			growthRate = 0.015f;
+			growthRate = 0.15f;
 			outputRate = 1.2f;
 			purchaseCost = 450;
 		} else if (colorType == BA) {
-			growthRate = 0.005f;
+			growthRate = 0.05f;
 			outputRate = 1f;
 			purchaseCost = 20;
 		} else if (colorType == BAA) {
-			growthRate = 0.008f;
+			growthRate = 0.08f;
 			outputRate = 2f;
 			purchaseCost = 175;
 		} else if (colorType == BAAA) {
-			growthRate = 0.01f;
+			growthRate = 0.1f;
 			outputRate = 5f;
 			purchaseCost = 1000;
 		} else if (colorType == GA) {
-			growthRate = 0.05f;
+			growthRate = 0.5f;
 			outputRate = 0.1f;
 			purchaseCost = 20;
 		} else if (colorType == GAA) {
-			growthRate = 0.075f;
+			growthRate = 0.75f;
 			outputRate = 0.15f;
 			purchaseCost = 175;
 		} else if (colorType == GAAA) {
-			growthRate = 0.1f;
+			growthRate = 1f;
 			outputRate = 0.2f;
 			purchaseCost = 1000;
 		} else if (colorType == Y) {
@@ -175,7 +222,7 @@ public class GroScript : MonoBehaviour {
 			float x = transform.localScale.x;
 			float y = transform.localScale.y;
 			float z = transform.localScale.z;
-			transform.localScale = new Vector3 (x, y + 0.1f, z);
+			transform.localScale = new Vector3 (x, y + 0.01f, z);
 
 			currentGrowthAmount = currentGrowthAmount - currGrowthNeeded;
 			if(currentGrowthAmount < 0){
