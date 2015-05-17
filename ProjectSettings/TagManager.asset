@@ -12,7 +12,7 @@ TagManager:
   - Red Gro A
   - Blue Gro A
   - Green Gro A
-  - Yellow Gro A
+  - Yellow Gro
   - Red Blop
   - Blue Blop
   - Green Blop
@@ -23,7 +23,6 @@ TagManager:
   - Blue Gro AAA
   - Green Gro AA
   - Green Gro AAA
-  - Red Gro
   layers:
   - Default
   - TransparentFX

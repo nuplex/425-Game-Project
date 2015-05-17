@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3361972}
   - 65: {fileID: 6592082}
   - 23: {fileID: 2340630}
+  - 114: {fileID: 11427762}
   m_Layer: 0
   m_Name: Red Gro AAA
   m_TagString: Red Gro AAA
@@ -68,11 +69,39 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195106}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11427762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9495aa2cb40bb14084b4ff1cd8de349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorType: 0
+  growthRate: 0
+  outputRate: 0
+  growthLevels: []
+  currentLevel: 0
+  currGrowthNeeded: 0
+  MAX_LEVEL: 200
+  blopsTaken: 0
+  blopsOutput: 0
+  currentOutputWait: 0
+  currentGrowthAmount: 0
+  currentOutputRate: 0
+  OUTPUT_AT: 1
+  MAX_HEIGHT: 38
+  timeToGrow: 0
+  timeToOutput: 0
+  purchaseCost: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
