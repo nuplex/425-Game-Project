@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GroScript : MonoBehaviour {
 
-	private int colorType;
+	public int colorType;
 	private int RA = 1, RAA = 2, RAAA = 3, BA = 4, BAA = 5, BAAA = 6, GA = 7, GAA = 8, GAAA = 9, Y = 10; 
 
 	public float growthRate; //per some in
@@ -58,10 +58,12 @@ public class GroScript : MonoBehaviour {
 		SetValues(colorType);
 		SetGrowthCurve();
 
+		Random.seed = System.DateTime.Now.Millisecond;
 	}
 
 	// Update is called once per frame
 	void Update () {
+
 		currentOutputWait += outputRate * Time.deltaTime;
 		if (currentOutputWait >= OUTPUT_AT) {
 			Output();
@@ -74,6 +76,8 @@ public class GroScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		print("Entered");
+
 		if (other.gameObject.tag == "Red Blop") {
 			//for now just staticly add
 			currentGrowthAmount += 0.1f;
@@ -85,7 +89,7 @@ public class GroScript : MonoBehaviour {
 			currentGrowthAmount += 0.1f;
 		} 
 
-		other.enabled = false;
+		Destroy (other.gameObject);
 
 		blopsTaken++;
 	}
@@ -129,7 +133,7 @@ public class GroScript : MonoBehaviour {
 			purchaseCost = 1000;
 		} else if (colorType == Y) {
 			growthRate = 0.001f;
-			outputRate = 0.1f;
+			outputRate = 0.01f;
 			purchaseCost = 25000;
 		} else {
 			growthRate = 0.01f;
@@ -179,7 +183,19 @@ public class GroScript : MonoBehaviour {
 		float z = transform.position.z;
 
 		//needs to be more complex, put onto path
-		Vector3 blopPosition = new Vector3 (x + 1, y, z);
+		int where = (int) Random.Range (1, 5);
+		Vector3 blopPosition;
+		if (where == 1) {
+			blopPosition = new Vector3 (x + 1, y, z);
+		} else if (where == 2) {
+			blopPosition = new Vector3 (x - 1, y, z);
+		} else if (where == 3) {
+			blopPosition = new Vector3 (x, y, z + 1);
+		} else if (where == 4) {
+			blopPosition = new Vector3 (x, y, z - 1);
+		} else {
+			blopPosition = new Vector3 (x + 1, y, z);
+		}
 
 		if (colorType == RA || colorType == RAA || colorType == RAA) {
 			blop = (GameObject) Instantiate(Resources.Load("Red Blop"));
@@ -201,6 +217,8 @@ public class GroScript : MonoBehaviour {
 			blop = (GameObject) Instantiate(Resources.Load("Red Blop"));
 			blop.transform.position = blopPosition;
 		}
+
+		currentOutputWait = 0f;
 
 		blopsOutput++;
 	}
