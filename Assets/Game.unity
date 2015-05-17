@@ -3365,6 +3365,7 @@ MonoBehaviour:
   highlight: {fileID: 352655186}
   plane: {fileID: 242249005}
   cubeMaster: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}
+  silhouette: {fileID: 2100000, guid: 8516e58b9686d6e47b632cfae6141c9c, type: 2}
 --- !u!1 &1271565332
 GameObject:
   m_ObjectHideFlags: 0

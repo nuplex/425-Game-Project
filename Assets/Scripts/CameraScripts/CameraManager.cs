@@ -50,6 +50,8 @@ public class CameraManager : MonoBehaviour {
 	GameObject cube;
 	Vector3 p;
 
+	public Material silhouette;
+
 	private GameObject[,] grid;
 
 	// Use this for initialization
@@ -168,6 +170,12 @@ public class CameraManager : MonoBehaviour {
 	// expects cube to be instantiated. places a cube on mouseup and immediately creates another one to use as the silhouette.
 	void placeObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
+			Material opaque = cube.GetComponent<Renderer>().material;
+			Color c = opaque.color;
+			silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+			Material[] mats = cube.GetComponent<Renderer>().materials;
+			mats[0] = silhouette;
+			cube.GetComponent<Renderer>().materials = mats;
 			Cursor.visible = false;
 			Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
@@ -176,6 +184,8 @@ public class CameraManager : MonoBehaviour {
 				int gridX = (int)(p.x+49.5);
 				int gridZ = (int)(p.z+49.5);
 				if (grid[gridX,gridZ] == null) {
+					mats[0] = opaque;
+					cube.GetComponent<Renderer>().materials = mats;
 					cube.GetComponent<GroScript>().placed = true;
 					//cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
 					grid[gridX,gridZ] = cube;
