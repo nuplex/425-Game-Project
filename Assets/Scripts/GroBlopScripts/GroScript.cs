@@ -198,15 +198,15 @@ public class GroScript : MonoBehaviour {
 		int where = (int) Random.Range (1, 5);
 		Vector3 blopPosition;
 		if (where == 1) {
-			blopPosition = new Vector3 (x + 1, y, z);
+			blopPosition = new Vector3 (x + 1.0f, y, z);
 		} else if (where == 2) {
-			blopPosition = new Vector3 (x - 1, y, z);
+			blopPosition = new Vector3 (x - 1.0f, y, z);
 		} else if (where == 3) {
-			blopPosition = new Vector3 (x, y, z + 1);
+			blopPosition = new Vector3 (x, y, z + 1.0f);
 		} else if (where == 4) {
-			blopPosition = new Vector3 (x, y, z - 1);
+			blopPosition = new Vector3 (x, y, z - 1.0f);
 		} else {
-			blopPosition = new Vector3 (x + 1, y, z);
+			blopPosition = new Vector3 (x + 1.0f, y, z);
 		}
 
 		if (colorType == RA || colorType == RAA || colorType == RAA) {

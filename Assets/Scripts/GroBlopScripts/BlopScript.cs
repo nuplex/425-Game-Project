@@ -21,7 +21,7 @@ public class BlopScript : MonoBehaviour {
 		addToGrowthRate = 1;
 		addToOutputRate = 1;
 
-		speed = 2f;
+		speed = 2.0f;
 
 		currDir = X_POS;
 		lastTurnX = transform.position.x;
@@ -44,7 +44,7 @@ public class BlopScript : MonoBehaviour {
 			DetermineDirection();
 		}
 
-			//49.75 will make the blop dissapear once it's top hits the edge
+			//49.75 will make the blop dissapear once its top hits the edge
 		if (x >= 49.75f || x <= -49.75f || z >= 49.75f || z <= -49.75f) {
 			Destroy(gameObject);
 		}
@@ -85,11 +85,11 @@ public class BlopScript : MonoBehaviour {
 		float space;
 
 		if (currDir == X_POS || currDir == X_NEG) {
-			space = Mathf.Ceil (x) - x;
+			space = Mathf.Abs(Mathf.Ceil (x) - x);
 		} else {
-			space = Mathf.Ceil (z) - z;
+			space = Mathf.Abs(Mathf.Ceil (z) - z);
 		}
-		if (space <= 0.5f) {
+		if (Mathf.Round(space * 10) / 10 == 0.5f) {
 			return true;
 		} else {
 			return false;
@@ -124,7 +124,7 @@ public class BlopScript : MonoBehaviour {
 		float x = transform.position.x;
 		float z = transform.position.z;
 
-		//since we are right now randomly determining, lets tend to stay straigh
+		//since we are right now randomly determining, lets tend to stay straight
 		float change = Random.Range (1, 5);
 		if (change < 3.8) {
 			return;

@@ -89,6 +89,7 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	public void newCube (string type) {
+		Destroy (cube);
 		if (!placing) {
 			switch (type) {
 			case "rA":
@@ -184,7 +185,7 @@ public class CameraManager : MonoBehaviour {
 		} else {
 			Cursor.visible = true;
 			resetHighlight ();
-			cube.transform.position = new Vector3 (0.0f,maxCamHeight,0.0f);
+			cube.transform.position = new Vector3 (0.0f,1000,0.0f);
 			/*p = activeCamera.ScreenPointToRay(Input.mousePosition);
 			cube.transform.position = activeCamera.transform.position + p.direction * 20;*/
 		}
@@ -259,6 +260,7 @@ public class CameraManager : MonoBehaviour {
 			}
 		}
 
+		// TODO add x and z limit to camera movement
 		if (naturalMode) {
 			if (Input.GetKey ("w")) {
 				for (int i = 0; i < cams.Length; i++) {
