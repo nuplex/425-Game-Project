@@ -40,10 +40,15 @@ public class BlopScript : MonoBehaviour {
 		float x = transform.position.x;
 		float z = transform.position.z;
 
+		if (NeedToTurn()) {
+			DetermineDirection();
+		}
+
 			//49.75 will make the blop dissapear once it's top hits the edge
 		if (x >= 49.75f || x <= -49.75f || z >= 49.75f || z <= -49.75f) {
 			Destroy(gameObject);
 		}
+
 		if (currDir == X_POS) {
 			offset = new Vector3 (speed * Time.deltaTime, 0, 0);
 		} else if (currDir == X_NEG) {
@@ -53,12 +58,9 @@ public class BlopScript : MonoBehaviour {
 		} else if (currDir == Z_NEG) {
 			offset = new Vector3 (0, 0, -speed * Time.deltaTime);
 		}
+
 		transform.position += offset;
 
-
-		if (NeedToTurn()) {
-			DetermineDirection();
-		}
 	}
 
 	void SetEnergy(float outAdd, float growAdd){
@@ -108,7 +110,7 @@ public class BlopScript : MonoBehaviour {
 			moved = 1.1f;
 		}	
 
-		if (moved < 1f) {
+		if (moved <= 1f) {
 			return true;
 		}
 
@@ -128,30 +130,17 @@ public class BlopScript : MonoBehaviour {
 			return;
 		}
 
-		float xOffset = (Mathf.Floor (x) + 0.5f) - x;
-		float zOffset = (Mathf.Floor (z) + 0.5f) - z;
-
 		//for testing just randomly change direction
-		//Vector3 reset; //put in middle.
 		int dir = (int) Random.Range(1,5);
-		if (currDir == dir) {
-			lastTurnX = x;
-			lastTurnZ = z;
-			return;
-		}
 
 		if (dir == X_POS) {
 			currDir = X_POS;
-			//transform.position += new Vector3(0, 0, zOffset);
 		} else if (dir == X_NEG) {
 			currDir = X_NEG;
-			//transform.position += new Vector3(0, 0, zOffset);
 		} else if (dir == Z_POS) {
 			currDir = Z_POS;
-			//transform.position += new Vector3(xOffset, 0, 0);
 		} else if (dir == Z_NEG) {
 			currDir = Z_NEG;
-			//transform.position += new Vector3(xOffset, 0, 0);
 		} else {
 			currDir = X_POS;
 		}

@@ -167,6 +167,9 @@ public class GroScript : MonoBehaviour {
 	}
 
 	void Grow(){
+		if (currentLevel == MAX_LEVEL) {
+			return;
+		}
 
 		while (currentGrowthAmount > currGrowthNeeded) {
 			float x = transform.localScale.x;
