@@ -30,6 +30,9 @@ public class CameraManager : MonoBehaviour {
 	bool placing;
 	bool destroying;
 
+	float maxCamHeight;
+	float minCamHeight;
+
 	public GameObject rA;
 	public GameObject rAA;
 	public GameObject rAAA;
@@ -51,6 +54,8 @@ public class CameraManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		maxCamHeight = 50.0f;
+		minCamHeight = 1.0f;
 		grid = new GameObject[100, 100];
 		placing = false;
 		destroying = false;
@@ -178,6 +183,7 @@ public class CameraManager : MonoBehaviour {
 		} else {
 			Cursor.visible = true;
 			resetHighlight ();
+			//cube.transform.position = new Vector3 (0,activeCamera.maxHeight,)
 			/*p = activeCamera.ScreenPointToRay(Input.mousePosition);
 			cube.transform.position = activeCamera.transform.position + p.direction * 20;*/
 		}
@@ -371,14 +377,14 @@ public class CameraManager : MonoBehaviour {
 			for (int i = 0; i < cams.Length; i++) {
 				//cams [i].transform.Translate (activeCamera.transform.forward * zoomSpeed * Time.deltaTime, Space.World);
 				Vector3 newPosition = cams[i].transform.position + activeCamera.transform.forward * zoomSpeed;
-				if (newPosition.y >= 1)
+				if (newPosition.y >= minCamHeight)
 					cams [i].transform.position = cams[i].transform.position + activeCamera.transform.forward * zoomSpeed;
 			}
 		} else if (!zoomIn){
 			for (int i = 0; i < cams.Length; i++) {
 				//cams [i].transform.Translate (-(activeCamera.transform.forward) * zoomSpeed * Time.deltaTime, Space.World);
 				Vector3 newPosition = cams[i].transform.position + activeCamera.transform.forward * zoomSpeed;
-				if (newPosition.y <= Mathf.Infinity)
+				if (newPosition.y <= maxCamHeight)
 					cams [i].transform.position = cams[i].transform.position + -(activeCamera.transform.forward) * zoomSpeed;
 			}
 		}
