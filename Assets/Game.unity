@@ -3544,6 +3544,16 @@ MonoBehaviour:
   maxZoomFOV: 120
   standardZoom: 60
   moveSpeed: 20
+  rA: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}
+  rAA: {fileID: 151840, guid: 1c3b3d9898edc1641ae83d6667d520bf, type: 2}
+  rAAA: {fileID: 195106, guid: 3966c2cfa4c887a4ca045ff4be2e97ae, type: 2}
+  gA: {fileID: 179222, guid: d772b76c77560034cae98ef9dcdfab2d, type: 2}
+  gAA: {fileID: 167526, guid: c2d06ee4c4e89574daed711f55de1cf1, type: 2}
+  gAAA: {fileID: 101662, guid: b18f51aad63fc8e47ad1efae04b0943c, type: 2}
+  bA: {fileID: 199260, guid: 3a5598fc08477324d91b4ca37b67c733, type: 2}
+  bAA: {fileID: 110306, guid: 18deb8f644d8ddb4fb7d60e053da239a, type: 2}
+  bAAA: {fileID: 181398, guid: 7c5a47827fe899046bfbe77397be4cf2, type: 2}
+  yS: {fileID: 126398, guid: 1b21272dc3493f34ba0fa01a7327f43a, type: 2}
   highlight: {fileID: 352655186}
   plane: {fileID: 242249005}
   cubeMaster: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}

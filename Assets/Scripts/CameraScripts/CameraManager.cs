@@ -30,6 +30,17 @@ public class CameraManager : MonoBehaviour {
 	bool placing;
 	bool destroying;
 
+	public GameObject rA;
+	public GameObject rAA;
+	public GameObject rAAA;
+	public GameObject gA;
+	public GameObject gAA;
+	public GameObject gAAA;
+	public GameObject bA;
+	public GameObject bAA;
+	public GameObject bAAA;
+	public GameObject yS;
+
 	public GameObject highlight;
 	public GameObject plane;
 	public GameObject cubeMaster;
@@ -68,6 +79,7 @@ public class CameraManager : MonoBehaviour {
 
 	public void setDestroying (bool destroyingIn) {
 		destroying = destroyingIn;
+		Destroy (cube);
 		resetHighlight ();
 	}
 
