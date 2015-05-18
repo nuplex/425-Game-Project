@@ -46,7 +46,7 @@ public class GroScript : MonoBehaviour {
 		} else if (ct == "Blue Gro AA") {
 			colorType = BAA;
 		} else if (ct == "Blue Gro AAA") {
-			colorType = BAA;
+			colorType = BAAA;
 		} else if (ct == "Green Gro A") {
 			colorType = GA;
 		} else if (ct == "Green Gro AA") {
