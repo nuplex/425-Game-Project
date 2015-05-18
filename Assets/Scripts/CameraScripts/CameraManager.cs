@@ -10,11 +10,8 @@ public class CameraManager : MonoBehaviour {
 
 	Vector3 offset;
 
-	public float zoomSpeed = 1.0f;
-	public float minZoomFOV = 10.0f;
-	public float maxZoomFOV = 120.0f;
-	public float standardZoom = 30.0f;
-	public float moveSpeed = 20.0f;
+	float zoomSpeed;
+	float moveSpeed;
 
 	Vector3 forward, backward, left, right;
 
@@ -49,13 +46,24 @@ public class CameraManager : MonoBehaviour {
 	public GameObject cubeMaster;
 	GameObject cube;
 	Vector3 p;
+	GameObject oldTarget;
+	GameObject currTarget;
+	Material oldMat;
 
 	public Material silhouette;
+	public Material redOpaque;
+	public Material greenOpaque;
+	public Material blueOpaque;
+	public Material yellowOpaque;
 
 	private GameObject[,] grid;
 
 	// Use this for initialization
 	void Start () {
+		oldTarget = null;
+		currTarget = null;
+		moveSpeed = 20.0f;
+		zoomSpeed = 4.0f;
 		maxCamHeight = 50.0f;
 		minCamHeight = 1.0f;
 		grid = new GameObject[100, 100];
@@ -170,12 +178,19 @@ public class CameraManager : MonoBehaviour {
 	// expects cube to be instantiated. places a cube on mouseup and immediately creates another one to use as the silhouette.
 	void placeObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
-			Material opaque = cube.GetComponent<Renderer>().material;
-			Color c = opaque.color;
+			if (cube.tag ==  "Red Gro A" || cube.tag == "Red Gro AA" || cube.tag == "Red Gro AAA") {
+				oldMat = redOpaque;
+			} else if (cube.tag ==  "Green Gro A" || cube.tag == "Green Gro AA" || cube.tag == "Green Gro AAA") {
+				oldMat = greenOpaque;
+			} else if (cube.tag ==  "Blue Gro A" || cube.tag == "Blue Gro AA" || cube.tag == "Blue Gro AAA") {
+				oldMat = blueOpaque;
+			} else {
+				oldMat = yellowOpaque;
+			}
+			Color c = oldMat.color;
 			silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
-			Material[] mats = cube.GetComponent<Renderer>().materials;
-			mats[0] = silhouette;
-			cube.GetComponent<Renderer>().materials = mats;
+			cube.GetComponent<BoxCollider>().enabled = false;
+			cube.GetComponent<Renderer>().material = silhouette;
 			Cursor.visible = false;
 			Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
@@ -184,8 +199,8 @@ public class CameraManager : MonoBehaviour {
 				int gridX = (int)(p.x+49.5);
 				int gridZ = (int)(p.z+49.5);
 				if (grid[gridX,gridZ] == null) {
-					mats[0] = opaque;
-					cube.GetComponent<Renderer>().materials = mats;
+					cube.GetComponent<BoxCollider>().enabled = true;
+					cube.GetComponent<Renderer>().material = oldMat;
 					cube.GetComponent<GroScript>().placed = true;
 					//cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
 					grid[gridX,gridZ] = cube;
@@ -211,15 +226,31 @@ public class CameraManager : MonoBehaviour {
 	void destroyObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
 			Cursor.visible = false;
-			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
-			if (Input.GetMouseButtonUp (0)) {
-				int gridX = (int)(p.x + 49.5);
-				int gridZ = (int)(p.z + 49.5);
-				if (grid [gridX, gridZ] != null) {
+			int gridX = (int)(p.x + 49.5);
+			int gridZ = (int)(p.z + 49.5);
+			currTarget = grid [gridX,gridZ]; 
+			if (currTarget != oldTarget && oldTarget != null)
+				oldTarget.GetComponent<Renderer>().material = oldMat;
+			if (currTarget != null) {
+				if (currTarget.tag ==  "Red Gro A" || currTarget.tag == "Red Gro AA" || currTarget.tag == "Red Gro AAA") {
+					oldMat = redOpaque;
+				} else if (currTarget.tag ==  "Green Gro A" || currTarget.tag == "Green Gro AA" || currTarget.tag == "Green Gro AAA") {
+					oldMat = greenOpaque;
+				} else if (currTarget.tag ==  "Blue Gro A" || currTarget.tag == "Blue Gro AA" || currTarget.tag == "Blue Gro AAA") {
+					oldMat = blueOpaque;
+				} else {
+					oldMat = yellowOpaque;
+				}
+				Color c = oldMat.color;
+				silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+				currTarget.GetComponent<Renderer>().material = silhouette;
+				highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
+				if (Input.GetMouseButtonUp (0)) {
 					Destroy (grid [gridX, gridZ]);
 					grid [gridX, gridZ] = null;
 				}
 			}
+			oldTarget = currTarget; 
 		} else {
 			resetHighlight ();
 			Cursor.visible = true;
@@ -307,13 +338,6 @@ public class CameraManager : MonoBehaviour {
 		} else  if (zoomDir > 0) {
 			Zoom (true);
 		}
-		
-		//reset zoom
-		/*if (Input.GetKey ("z")) {
-			for(int i = 0; i < cams.Length; i++){
-				cams[i].fieldOfView = standardZoom;
-			}
-		}*/
 	}
 
 	void ChangeCam(int cam){
@@ -386,14 +410,14 @@ public class CameraManager : MonoBehaviour {
 		if (zoomIn) {
 			for (int i = 0; i < cams.Length; i++) {
 				//cams [i].transform.Translate (activeCamera.transform.forward * zoomSpeed * Time.deltaTime, Space.World);
-				Vector3 newPosition = cams[i].transform.position + activeCamera.transform.forward;
+				Vector3 newPosition = cams[i].transform.position + cams[i].transform.forward * zoomSpeed;
 				if (newPosition.y >= minCamHeight)
 					cams [i].transform.position = newPosition;
 			}
 		} else if (!zoomIn){
 			for (int i = 0; i < cams.Length; i++) {
 				//cams [i].transform.Translate (-(activeCamera.transform.forward) * zoomSpeed * Time.deltaTime, Space.World);
-				Vector3 newPosition = cams[i].transform.position + (-(activeCamera.transform.forward));
+				Vector3 newPosition = cams[i].transform.position + (-(cams[i].transform.forward)) * zoomSpeed;
 				if (newPosition.y <= maxCamHeight)
 					cams [i].transform.position = newPosition;
 			}

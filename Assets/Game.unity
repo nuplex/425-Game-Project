@@ -3347,11 +3347,6 @@ MonoBehaviour:
   camSE: {fileID: 1040588914}
   camSW: {fileID: 1925205738}
   camNW: {fileID: 2089622911}
-  zoomSpeed: 20
-  minZoomFOV: 10
-  maxZoomFOV: 120
-  standardZoom: 60
-  moveSpeed: 20
   rA: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}
   rAA: {fileID: 151840, guid: 1c3b3d9898edc1641ae83d6667d520bf, type: 2}
   rAAA: {fileID: 195106, guid: 3966c2cfa4c887a4ca045ff4be2e97ae, type: 2}
@@ -3366,6 +3361,10 @@ MonoBehaviour:
   plane: {fileID: 242249005}
   cubeMaster: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}
   silhouette: {fileID: 2100000, guid: 8516e58b9686d6e47b632cfae6141c9c, type: 2}
+  redOpaque: {fileID: 2100000, guid: 8876d625375e0f1448d020227efe6a34, type: 2}
+  greenOpaque: {fileID: 2100000, guid: 7332ae1feb2073f4a9946a73e3dafe04, type: 2}
+  blueOpaque: {fileID: 2100000, guid: 65a312e2b95096b45b7cb5dedb847321, type: 2}
+  yellowOpaque: {fileID: 2100000, guid: 3fd1771a3781eca458bd46103ff23d4d, type: 2}
 --- !u!1 &1271565332
 GameObject:
   m_ObjectHideFlags: 0
