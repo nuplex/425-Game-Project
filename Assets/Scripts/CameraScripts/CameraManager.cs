@@ -225,6 +225,7 @@ public class CameraManager : MonoBehaviour {
 
 	void destroyObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
+			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			Cursor.visible = false;
 			int gridX = (int)(p.x + 49.5);
 			int gridZ = (int)(p.z + 49.5);
@@ -244,7 +245,6 @@ public class CameraManager : MonoBehaviour {
 				Color c = oldMat.color;
 				silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
 				currTarget.GetComponent<Renderer>().material = silhouette;
-				highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 				if (Input.GetMouseButtonUp (0)) {
 					Destroy (grid [gridX, gridZ]);
 					grid [gridX, gridZ] = null;
