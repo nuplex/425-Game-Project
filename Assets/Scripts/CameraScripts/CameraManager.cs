@@ -228,7 +228,7 @@ public class CameraManager : MonoBehaviour {
 			Cursor.visible = false;
 			int gridX = (int)(p.x + 49.5);
 			int gridZ = (int)(p.z + 49.5);
-			currTarget = grid [gridX,gridZ]; 
+			currTarget = grid [gridX,gridZ];
 			if (currTarget != oldTarget && oldTarget != null)
 				oldTarget.GetComponent<Renderer>().material = oldMat;
 			if (currTarget != null) {
@@ -249,6 +249,8 @@ public class CameraManager : MonoBehaviour {
 					Destroy (grid [gridX, gridZ]);
 					grid [gridX, gridZ] = null;
 				}
+			} else {
+				Cursor.visible = true;
 			}
 			oldTarget = currTarget; 
 		} else {
