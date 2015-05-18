@@ -23,6 +23,17 @@ TagManager:
   - Blue Gro AAA
   - Green Gro AA
   - Green Gro AAA
+  - path_a
+  - path_btl
+  - path_btr
+  - path_h
+  - path_3b
+  - path_3l
+  - path_3r
+  - path_3t
+  - path_ttl
+  - path_ttr
+  - path_v
   layers:
   - Default
   - TransparentFX

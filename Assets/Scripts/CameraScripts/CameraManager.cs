@@ -57,7 +57,28 @@ public class CameraManager : MonoBehaviour {
 	public Material greenOpaque;
 	public Material blueOpaque;
 	public Material yellowOpaque;
-	public Material pathOpaque;
+	public Material pathA;
+	public Material pathAS;
+	public Material pathBTL;
+	public Material pathBTLS;
+	public Material pathBTR;
+	public Material pathBTRS;
+	public Material pathH;
+	public Material pathHS;
+	public Material path3B;
+	public Material path3BS;
+	public Material path3L;
+	public Material path3LS;
+	public Material path3R;
+	public Material path3RS;
+	public Material path3T;
+	public Material path3TS;
+	public Material pathTTL;
+	public Material pathTTLS;
+	public Material pathTTR;
+	public Material pathTTRS;
+	public Material pathV;
+	public Material pathVS;
 
 	private GameObject[,] grid;
 
@@ -192,7 +213,7 @@ public class CameraManager : MonoBehaviour {
 			Cursor.visible = false;
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			cube.GetComponent<MeshCollider>().enabled = false;
-			cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
+			cube.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			if (Input.GetMouseButtonUp (0)) {
 				int gridX = (int)(p.x+49.5);
 				int gridZ = (int)(p.z+49.5);
@@ -268,20 +289,63 @@ public class CameraManager : MonoBehaviour {
 				oldTarget.GetComponent<Renderer> ().material = oldMat;
 			}
 			if (currTarget != null) {
+				Material newMat = null;
+				Color c = new Color ();
 				if (currTarget.tag ==  "Red Gro A" || currTarget.tag == "Red Gro AA" || currTarget.tag == "Red Gro AAA") {
 					oldMat = redOpaque;
+					c = oldMat.color;
+					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					newMat = silhouette;
 				} else if (currTarget.tag ==  "Green Gro A" || currTarget.tag == "Green Gro AA" || currTarget.tag == "Green Gro AAA") {
 					oldMat = greenOpaque;
+					c = oldMat.color;
+					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					newMat = silhouette;
 				} else if (currTarget.tag ==  "Blue Gro A" || currTarget.tag == "Blue Gro AA" || currTarget.tag == "Blue Gro AAA") {
 					oldMat = blueOpaque;
+					c = oldMat.color;
+					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					newMat = silhouette;
 				} else if (currTarget.tag == "Yellow Gro"){
 					oldMat = yellowOpaque;
-				} else { //path
-					oldMat = pathOpaque;
+					c = oldMat.color;
+					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					newMat = silhouette;
+				} else if (currTarget.tag == "path_a"){
+					oldMat = pathA;
+					newMat = pathAS;
+				} else if (currTarget.tag == "path_btl"){
+					oldMat = pathBTL;
+					newMat = pathBTLS;
+				} else if (currTarget.tag == "path_btr"){
+					oldMat = pathBTR;
+					newMat = pathBTRS;
+				} else if (currTarget.tag == "path_h"){
+					oldMat = pathH;
+					newMat = pathHS;
+				} else if (currTarget.tag == "path_3b"){
+					oldMat = path3B;
+					newMat = path3BS;
+				} else if (currTarget.tag == "path_3l"){
+					oldMat = path3L;
+					newMat = path3LS;
+				} else if (currTarget.tag == "path_3r"){
+					oldMat = path3R;
+					newMat = path3RS;
+				} else if (currTarget.tag == "path_3t"){
+					oldMat = path3T;
+					newMat = path3TS;
+				} else if (currTarget.tag == "path_ttl"){
+					oldMat = pathTTL;
+					newMat = pathTTLS;
+				} else if (currTarget.tag == "path_ttr"){
+					oldMat = pathTTR;
+					newMat = pathTTRS;
+				} else if (currTarget.tag == "path_v"){
+					oldMat = pathV;
+					newMat = pathVS;
 				}
-				Color c = oldMat.color;
-				silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
-				currTarget.GetComponent<Renderer>().material = silhouette;
+				currTarget.GetComponent<Renderer>().material = newMat;
 				if (Input.GetMouseButtonUp (0)) {
 					Destroy (grid [gridX, gridZ]);
 					grid [gridX, gridZ] = null;
