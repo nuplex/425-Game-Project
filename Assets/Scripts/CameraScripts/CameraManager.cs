@@ -57,6 +57,7 @@ public class CameraManager : MonoBehaviour {
 	public Material greenOpaque;
 	public Material blueOpaque;
 	public Material yellowOpaque;
+	public Material pathDefault;
 	public Material pathA;
 	public Material pathAS;
 	public Material pathBTL;
@@ -288,6 +289,12 @@ public class CameraManager : MonoBehaviour {
 					} else if (grid[gridX,top] != null || grid[gridX,bottom] != null) {
 						cube.GetComponent<Renderer>().material = pathV;
 						cube.tag = "path_v";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//default
+					} else {
+						cube.GetComponent<Renderer>().material = pathDefault;
+						cube.tag = "path_default";
 						grid[gridX,gridZ] = cube;
 						cube = (GameObject) Instantiate (pathMaster);
 					}
