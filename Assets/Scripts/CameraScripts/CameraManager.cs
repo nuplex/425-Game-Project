@@ -218,10 +218,22 @@ public class CameraManager : MonoBehaviour {
 				int gridX = (int)(p.x+49.5);
 				int gridZ = (int)(p.z+49.5);
 				if (grid[gridX,gridZ] == null) {
+					int left = gridX - 1;
+					int right = gridX + 1;
+					int top = gridZ + 1;
+					int bottom = gridZ - 1;
 					cube.GetComponent<MeshCollider>().enabled = true;
-					grid[gridX,gridZ] = cube;
-					cube = (GameObject) Instantiate (pathMaster);
 					//TODO determine which path texture to use/if path can be placed down
+					//all
+					if (grid[left,gridZ] != null && grid[right,gridZ] != null && grid[gridX,top] != null && grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = pathA;
+						cube.tag = "path_a";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					} else {
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					}
 				}
 			}
 		} else {
