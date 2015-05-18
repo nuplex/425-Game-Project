@@ -1211,7 +1211,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1222434553}
-        m_MethodName: setDestroying
+        m_MethodName: setPathing
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1220,7 +1220,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1222434553}
         m_MethodName: setPlacing
@@ -1233,6 +1233,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: setDestroying
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -2238,6 +2250,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: newPath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: setPathing
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &923829849
@@ -3181,6 +3217,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
+--- !u!1001 &1204050118
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .00499999989
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -1.62920685e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 444764, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1215329177
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,7 +3355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorsPanel: {fileID: 305509554}
   cube: {fileID: 181058, guid: 5b9ecb60b7be2fb43be04d232fad98c3, type: 2}
-  pathTexture: {fileID: 2800000, guid: ee03acf05d65b0342838709584f00547, type: 3}
+  pathTexture: {fileID: 2800000, guid: 9a9937453e6589f459dd6ed9dddfce2c, type: 3}
   destroyTexture: {fileID: 2800000, guid: b45f981480107154fb782f4a44e8e977, type: 3}
   defaultTexture: {fileID: 2800000, guid: 3361c327f6ca8b94db24dbcf104e96cc, type: 3}
 --- !u!4 &1219806654
@@ -3360,11 +3438,13 @@ MonoBehaviour:
   highlight: {fileID: 352655186}
   plane: {fileID: 242249005}
   cubeMaster: {fileID: 184404, guid: 4f20df8eb15ae784fb37e7f8723c7c12, type: 2}
+  pathMaster: {fileID: 179216, guid: 5ea3e9b60fe7fe8489c444c679acbc2d, type: 2}
   silhouette: {fileID: 2100000, guid: 8516e58b9686d6e47b632cfae6141c9c, type: 2}
   redOpaque: {fileID: 2100000, guid: 8876d625375e0f1448d020227efe6a34, type: 2}
   greenOpaque: {fileID: 2100000, guid: 7332ae1feb2073f4a9946a73e3dafe04, type: 2}
   blueOpaque: {fileID: 2100000, guid: 65a312e2b95096b45b7cb5dedb847321, type: 2}
   yellowOpaque: {fileID: 2100000, guid: 3fd1771a3781eca458bd46103ff23d4d, type: 2}
+  pathOpaque: {fileID: 2100000, guid: 1abe4bfc002b2194b86ede54c395fa18, type: 2}
 --- !u!1 &1271565332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,6 +4668,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1222434553}
         m_MethodName: setDestroying
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1222434553}
+        m_MethodName: setPathing
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

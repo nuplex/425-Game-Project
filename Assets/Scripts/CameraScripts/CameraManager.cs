@@ -26,6 +26,7 @@ public class CameraManager : MonoBehaviour {
 	private bool naturalMode;
 	bool placing;
 	bool destroying;
+	bool pathing;
 
 	float maxCamHeight;
 	float minCamHeight;
@@ -44,6 +45,7 @@ public class CameraManager : MonoBehaviour {
 	public GameObject highlight;
 	public GameObject plane;
 	public GameObject cubeMaster;
+	public GameObject pathMaster;
 	GameObject cube;
 	Vector3 p;
 	GameObject oldTarget;
@@ -55,6 +57,7 @@ public class CameraManager : MonoBehaviour {
 	public Material greenOpaque;
 	public Material blueOpaque;
 	public Material yellowOpaque;
+	public Material pathOpaque;
 
 	private GameObject[,] grid;
 
@@ -88,6 +91,10 @@ public class CameraManager : MonoBehaviour {
 		highlight.transform.position = new Vector3 (0,-1,0);
 	}
 
+	public void setPathing (bool pathingIn) {
+		pathing = pathingIn;
+	}
+
 	public void setPlacing (bool placingIn) {
 		placing = placingIn;
 	}
@@ -96,6 +103,11 @@ public class CameraManager : MonoBehaviour {
 		destroying = destroyingIn;
 		Destroy (cube);
 		resetHighlight ();
+	}
+
+	public void newPath () {
+		if (!pathing)
+			cube = (GameObject)Instantiate (pathMaster);
 	}
 
 	public void newCube (string type) {
@@ -175,6 +187,28 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
+	void path () {
+		if (raycast () && !EventSystem.current.IsPointerOverGameObject ()) {
+			Cursor.visible = false;
+			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
+			cube.GetComponent<MeshCollider>().enabled = false;
+			cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
+			if (Input.GetMouseButtonUp (0)) {
+				int gridX = (int)(p.x+49.5);
+				int gridZ = (int)(p.z+49.5);
+				if (grid[gridX,gridZ] == null) {
+					cube.GetComponent<MeshCollider>().enabled = true;
+					grid[gridX,gridZ] = cube;
+					cube = (GameObject) Instantiate (pathMaster);
+					//TODO determine which path texture to use/if path can be placed down
+				}
+			}
+		} else {
+			Cursor.visible = true;
+			resetHighlight();
+		}
+	}
+
 	// expects cube to be instantiated. places a cube on mouseup and immediately creates another one to use as the silhouette.
 	void placeObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
@@ -192,7 +226,7 @@ public class CameraManager : MonoBehaviour {
 			cube.GetComponent<BoxCollider>().enabled = false;
 			cube.GetComponent<Renderer>().material = silhouette;
 			Cursor.visible = false;
-			Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
+			//Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
 			if (Input.GetMouseButtonUp (0)) {
@@ -240,8 +274,10 @@ public class CameraManager : MonoBehaviour {
 					oldMat = greenOpaque;
 				} else if (currTarget.tag ==  "Blue Gro A" || currTarget.tag == "Blue Gro AA" || currTarget.tag == "Blue Gro AAA") {
 					oldMat = blueOpaque;
-				} else {
+				} else if (currTarget.tag == "Yellow Gro"){
 					oldMat = yellowOpaque;
+				} else { //path
+					oldMat = pathOpaque;
 				}
 				Color c = oldMat.color;
 				silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
@@ -263,6 +299,9 @@ public class CameraManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (pathing) {
+			path ();
+		}
 		if (placing) {
 			placeObject ();
 		}
