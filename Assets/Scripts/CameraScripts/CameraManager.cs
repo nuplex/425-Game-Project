@@ -224,14 +224,15 @@ public class CameraManager : MonoBehaviour {
 	}
 
 	void destroyObject () {
-		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
+		if (raycast () && !EventSystem.current.IsPointerOverGameObject ()) {
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			Cursor.visible = false;
 			int gridX = (int)(p.x + 49.5);
 			int gridZ = (int)(p.z + 49.5);
-			currTarget = grid [gridX,gridZ];
-			if (currTarget != oldTarget && oldTarget != null)
-				oldTarget.GetComponent<Renderer>().material = oldMat;
+			currTarget = grid [gridX, gridZ];
+			if (currTarget != oldTarget && oldTarget != null) {
+				oldTarget.GetComponent<Renderer> ().material = oldMat;
+			}
 			if (currTarget != null) {
 				if (currTarget.tag ==  "Red Gro A" || currTarget.tag == "Red Gro AA" || currTarget.tag == "Red Gro AAA") {
 					oldMat = redOpaque;
@@ -424,5 +425,9 @@ public class CameraManager : MonoBehaviour {
 					cams [i].transform.position = newPosition;
 			}
 		}
+	}
+
+	void OnApplicationQuit () {
+		silhouette.SetColor ("_Color", new Color(0.0f, 0.0f, 0.0f, 0.5f));
 	}
 }
