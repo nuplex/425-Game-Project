@@ -230,7 +230,64 @@ public class CameraManager : MonoBehaviour {
 						cube.tag = "path_a";
 						grid[gridX,gridZ] = cube;
 						cube = (GameObject) Instantiate (pathMaster);
-					} else {
+					//3t
+					} else if (grid[left,gridZ] != null && grid[right,gridZ] != null && grid[gridX,top] != null) {
+						cube.GetComponent<Renderer>().material = path3T;
+						cube.tag = "path_3t";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//3b
+					} else if (grid[left,gridZ] != null && grid[right,gridZ] != null && grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = path3B;
+						cube.tag = "path_3b";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//3l
+					} else if (grid[left,gridZ] != null && grid[gridX,top] != null && grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = path3L;
+						cube.tag = "path_3l";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//3r
+					} else if (grid[right,gridZ] != null && grid[gridX,top] != null && grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = path3R;
+						cube.tag = "path_3r";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//ttl
+					} else if (grid[left,gridZ] != null && grid[gridX,top] != null) {
+						cube.GetComponent<Renderer>().material = pathTTL;
+						cube.tag = "path_ttl";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//ttr
+					} else if (grid[right,gridZ] != null && grid[gridX,top]) {
+						cube.GetComponent<Renderer>().material = pathTTR;
+						cube.tag = "path_ttr";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//btl
+					} else if (grid[left,gridZ] != null && grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = pathBTL;
+						cube.tag = "path_btl";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//btr
+					} else if (grid[right,gridZ] != null && grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = pathBTR;
+						cube.tag = "path_btr";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//h
+					} else if (grid[right,gridZ] != null || grid[left,gridZ] != null) {
+						cube.GetComponent<Renderer>().material = pathH;
+						cube.tag = "path_h";
+						grid[gridX,gridZ] = cube;
+						cube = (GameObject) Instantiate (pathMaster);
+					//v
+					} else if (grid[gridX,top] != null || grid[gridX,bottom] != null) {
+						cube.GetComponent<Renderer>().material = pathV;
+						cube.tag = "path_v";
 						grid[gridX,gridZ] = cube;
 						cube = (GameObject) Instantiate (pathMaster);
 					}
