@@ -14,7 +14,7 @@ public class GroScript : MonoBehaviour {
 	public float[] growthLevels;
 	public int currentLevel = 0;
 	public float currGrowthNeeded;
-	public int MAX_LEVEL = 2000;
+	public const int MAX_LEVEL = 2000;
 
 	public int blopsTaken = 0;
 	public int blopsOutput = 0;
@@ -23,11 +23,15 @@ public class GroScript : MonoBehaviour {
 
 	public float currentGrowthAmount = 0.0f; 
 	public float currentOutputRate = 0.0f;
-	public int OUTPUT_AT = 1;
-	public int BP_OUT_AT = 1;
-	public int MAX_HEIGHT = 38;
+	public const int OUTPUT_AT = 1;
+	public const int BP_OUT_AT = 1;
+	public const int BP_NEG_OUT = -1;
+	public const int MAX_HEIGHT = 38;
 	public bool timeToGrow = false;
 	public bool timeToOutput = false;
+
+	public const float MAX_OUTPUT_RATE = 10f;
+	public const float MAX_BP_RATE = 100f;
 
 	public int purchaseCost;
 
@@ -76,8 +80,12 @@ public class GroScript : MonoBehaviour {
 		}
 
 		currentBPWait += bpRate * Time.deltaTime;
-		if (currentBPWait >= BP_OUT_AT) {
-			ProduceBP();
+		if (currentBPWait >= BP_OUT_AT || currentBPWait <= BP_NEG_OUT) {
+			if(currentBPWait < 0){
+				ProduceBP(true);
+			} else {
+				ProduceBP(false);
+			}
 		}
 
 		currentOutputWait += outputRate * Time.deltaTime;
@@ -168,7 +176,15 @@ public class GroScript : MonoBehaviour {
 				outputRate += 0.000025f;
 				bpRate += 0.0001f;
 			}
-		} 
+		}
+
+		if (bpRate > MAX_BP_RATE) {
+			bpRate = MAX_BP_RATE;
+		}
+
+		if (outputRate > MAX_OUTPUT_RATE) {
+			outputRate = MAX_OUTPUT_RATE;
+		}
 
 		Destroy (other.gameObject);
 
@@ -353,8 +369,12 @@ public class GroScript : MonoBehaviour {
 		}
 	}
 
-	void ProduceBP(){
-		AddBlopPoints ((int)currentBPWait + (currentLevel/100));
+	void ProduceBP(bool negative){
+		if (!negative) {
+			AddBlopPoints ((int)currentBPWait + (currentLevel / 100));
+		} else {
+			AddBlopPoints((int) currentBPWait - (currentLevel/100));
+		}
 		currentBPWait = 0f;
 	}
 
