@@ -221,43 +221,148 @@ public class CameraManager : MonoBehaviour {
 			int right = gridX + 1;
 			int top = gridZ + 1;
 			int bottom = gridZ - 1;
-			//all
-			if (grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null) {
-				return "path_a";
-				//3t
-			} else if (grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, top] != null) {
-				return "path_3t";
-				//3b
-			} else if (grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, bottom] != null) {
-				return "path_3b";
-				//3l
-			} else if (grid [left, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null) {
-				return "path_3l";
-				//3r
-			} else if (grid [right, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null) {
-				return "path_3r";
-				//ttl
-			} else if (grid [left, gridZ] != null && grid [gridX, top] != null) {
-				return "path_ttl";
-				//ttr
-			} else if (grid [right, gridZ] != null && grid [gridX, top]) {
-				return "path_ttr";
-				//btl
-			} else if (grid [left, gridZ] != null && grid [gridX, bottom] != null) {
-				return "path_btl";
-				//btr
-			} else if (grid [right, gridZ] != null && grid [gridX, bottom] != null) {
-				return "path_btr";
-				//h
-			} else if (grid [right, gridZ] != null || grid [left, gridZ] != null) {
-				return "path_h";
-				//v
-			} else if (grid [gridX, top] != null || grid [gridX, bottom] != null) {
-				return "path_v";
-				//default
-			} else {
-				return "path_default";
+			//left edge
+			if (left < 0) {
+				//left top
+				if (top > 99) {
+					if (grid [right, gridZ] != null && grid [gridX,bottom] != null) {
+						return "path_btr";
+					} else if (grid [right,gridZ] != null) {
+						return "path_h";
+					} else if (grid [gridX,bottom] != null) {
+						return "path_v";
+					} else
+						return "path_default";
+				//left bottom
+				}else if (bottom < 0){
+					if (grid [right,gridZ] != null && grid [gridX,top] != null) {
+						return "path_ttr";
+					} else if (grid [right,gridZ] != null) {
+						return "path_h";
+					} else if (grid [gridX,top] != null) {
+						return "path_v";
+					} else {
+						return "path_default";
+					}
+				} else if (grid [right, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null) {
+					return "path_3r";
+				} else if (grid [right, gridZ] != null && grid [gridX, top] != null) {
+					return "path_ttr";
+				} else if (grid [right, gridZ] != null && grid [gridX, bottom] != null) {
+					return "path_btr";
+				} else if (grid [right, gridZ] != null) {
+					return "path_h";
+				} else if (grid [gridX, bottom] != null || grid [gridX, top] != null) {
+					return "path_v";
+				} else {
+					return "path_default";
+				}
 			}
+			//right edge
+			else if (right > 99) {
+				//right top
+				if (top > 99) {
+					if (grid [left,gridZ] != null && grid [gridX,bottom] != null) {
+						return "path_btl";
+					} else if (grid [left,gridZ] != null) {
+						return "path_h";
+					} else if (grid [gridX,bottom] != null) {
+						return "path_v";
+					} else
+						return "path_default";
+				//right bottom
+				} else if (bottom < 0){
+					if (grid [left,gridZ] != null && grid [gridX,top] != null) {
+						return "path_ttl";
+					} else if (grid [left,gridZ] != null) {
+						return "path_h";
+					} else if (grid [gridX,top] != null) {
+						return "path_v";
+					} else {
+						return "path_default";
+					}
+				} else if (grid [left, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null) {
+					return "path_3l";
+				} else if (grid [left, gridZ] != null && grid [gridX, top] != null) {
+					return "path_ttl";
+				} else if (grid [left, gridZ] != null && grid [gridX, bottom] != null) {
+					return "path_btl";
+				} else if (grid [left, gridZ] != null) {
+					return "path_h";
+				} else if (grid [gridX, bottom] != null || grid [gridX, top] != null) {
+					return "path_v";
+				} else {
+					return "path_default";
+				}
+			}
+			//top edge (and not left or right edge)
+			else if (top > 99) {
+				if(grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, bottom] != null){
+					return "path_3b";
+				} else if(grid [left, gridZ] != null && grid [gridX, bottom] != null){
+					return "path_btl";
+				} else if(grid [right, gridZ] != null && grid [gridX, bottom] != null){
+					return "path_btr";
+				} else if(grid [left, gridZ] != null || grid [right, gridZ] != null){
+					return "path_h";
+				} else if(grid [gridX, bottom] != null){
+					return "path_v";
+				} else {
+					return "path_default";
+				}
+			}
+			//bottom edge (and not left or right edge)
+			else if (bottom < 0) {
+				if(grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, top] != null){
+					return "path_3t";
+				} else if(grid [left, gridZ] != null && grid [gridX, top] != null){
+					return "path_ttl";
+				} else if(grid [right, gridZ] != null && grid [gridX, top] != null){
+					return "path_ttr";
+				} else if(grid [left, gridZ] != null || grid [right, gridZ] != null){
+					return "path_h";
+				} else if(grid [gridX, top] != null){
+					return "path_v";
+				} else {
+					return "path_default";
+				}
+			}
+			//all
+			else if (grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null)
+				return "path_a";
+			//3t
+			else if (grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, top] != null)
+				return "path_3t";
+			//3b
+			else if (grid [left, gridZ] != null && grid [right, gridZ] != null && grid [gridX, bottom] != null)
+				return "path_3b";
+			//3l
+			else if (grid [left, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null)
+				return "path_3l";
+			//3r
+			else if (grid [right, gridZ] != null && grid [gridX, top] != null && grid [gridX, bottom] != null)
+				return "path_3r";
+			//ttl
+			else if (grid [left, gridZ] != null && grid [gridX, top] != null)
+				return "path_ttl";
+			//ttr
+			else if (grid [right, gridZ] != null && grid [gridX, top] != null)
+				return "path_ttr";
+			//btl
+			else if (grid [left, gridZ] != null && grid [gridX, bottom] != null)
+				return "path_btl";
+			//btr
+			else if (grid [right, gridZ] != null && grid [gridX, bottom] != null)
+				return "path_btr";
+			//h
+			else if (grid [right, gridZ] != null || grid [left, gridZ] != null)
+				return "path_h";
+			//v
+			else if (grid [gridX, top] != null || grid [gridX, bottom] != null)
+				return "path_v";
+			//default
+			else
+				return "path_default";
 		} else {
 			return "cube";
 		}

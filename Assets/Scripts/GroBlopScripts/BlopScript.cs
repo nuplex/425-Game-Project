@@ -24,7 +24,7 @@ public class BlopScript : MonoBehaviour {
 
 		speed = 2.0f;
 
-		currDir = X_POS;
+		//currDir = X_POS;
 		lastTurnX = transform.position.x;
 		lastTurnZ = transform.position.z;
 
@@ -62,6 +62,10 @@ public class BlopScript : MonoBehaviour {
 
 		transform.position += offset;
 
+	}
+
+	public void setDirection(int direction) {
+		currDir = direction;
 	}
 
 	void SetEnergy(float outAdd, float growAdd){
@@ -111,14 +115,14 @@ public class BlopScript : MonoBehaviour {
 			moved = 1.1f;
 		}	
 
-		if (moved <= 1f) {
+		if (moved <= 0.9f) {
 			return true;
 		}
 
 		return false;
 	}
 
-	void DetermineDirection(){
+	public void DetermineDirection(){
 		//should determine next direction to go based off of path
 		//if about to go off edge of path, change direction to continue on path
 
