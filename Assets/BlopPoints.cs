@@ -5,20 +5,22 @@ public class BlopPoints : MonoBehaviour {
 
 	public UnityEngine.UI.Text bpText;
 	private const string bp = "BP: ";
-	int points;
+	long points;
 
 	// Use this for initialization
 	void Start () {
 		points = 100;
-		UpdateTex ();
+		UpdateText ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown ("h")) {
+			Add (10000000);
+		}
 	}
 
-	public bool CanBuy(int amt){
+	public bool CanBuy(long amt){
 		if (points - amt < 0) {
 			return false;
 		} else {
@@ -26,20 +28,20 @@ public class BlopPoints : MonoBehaviour {
 		}
 	}
 
-	public void Use(int amt){
+	public void Use(long amt){
 		if (points - amt < 0) {
 			return;
 		}
 		points -= amt;
-		UpdateTex ();
+		UpdateText ();
 	}
 
-	public void Add(int amt){
+	public void Add(long amt){
 		points += amt;
-		UpdateTex ();
+		UpdateText ();
 	}
 
-	void UpdateTex(){
+	void UpdateText(){
 		bpText.text = bp + points;
 	}
 }

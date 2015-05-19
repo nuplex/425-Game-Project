@@ -22,7 +22,7 @@ public class BlopScript : MonoBehaviour {
 		addToGrowthRate = 1;
 		addToOutputRate = 1;
 
-		speed = 2.0f;
+		speed = 1.5f;
 
 		//currDir = X_POS;
 		lastTurnX = transform.position.x;
