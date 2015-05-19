@@ -841,6 +841,44 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
+	public bool isPath(GameObject o) {
+		return (o.tag == "path_a" || o.tag == "path_btl" || o.tag == "path_btr" ||
+				o.tag == "path_3b" || o.tag == "path_3t" || o.tag == "path_3l" ||
+				o.tag == "path_3r" || o.tag == "path_ttl" || o.tag == "path_ttl" ||
+				o.tag == "path_h" || o.tag == "path_v" || o.tag == "path_default");
+	}
+
+	public int[] CanOutputTo(float x, float z) {
+		int gridX = (int) Mathf.Floor (x) + 50;
+		int gridZ = (int) Mathf.Floor (z) + 50;
+		int left = gridX - 1;
+		int right = gridX + 1;
+		int top = gridZ + 1;
+		int bottom = gridZ - 1;
+		int[] surrounding = new int[4];
+		if (right <= 99 && grid[right,gridZ] != null && isPath (grid[right,gridZ])) {
+			surrounding [0] = 1;
+		} else {
+			surrounding [0] = 0;
+		}
+		if (left >= 0 && grid[left,gridZ] != null && isPath (grid[left,gridZ])) {
+			surrounding [1] = 1;
+		} else {
+			surrounding [1] = 0;
+		}
+		if (top <= 99 && grid[gridX,top] != null && isPath (grid[gridX,top])) {
+			surrounding [2] = 1;
+		} else {
+			surrounding [2] = 0;
+		}
+		if (bottom >= 0 && grid[gridX,bottom] != null && isPath (grid[gridX,bottom])) {
+			surrounding [3] = 1;
+		} else {
+			surrounding [3] = 0;
+		}
+		return surrounding;
+	}
+
 	//x+=1 x-=2 z+=3 z-=4; 0 unavailable, 1 available
 	public int[] CanMoveTo(float x, float z){
 		int gridX = (int) Mathf.Floor (x) + 50;

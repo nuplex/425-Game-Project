@@ -244,7 +244,7 @@ public class GroScript : MonoBehaviour {
 		float y = transform.position.y;
 		float z = transform.position.z;
 
-		int[] possibilities = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().CanMoveTo (x, z);
+		int[] possibilities = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().CanOutputTo (x, z);
 		List<int> pos = new List<int> ();
 
 		for (int i = 0; i <possibilities.Length; i++) {
@@ -252,12 +252,12 @@ public class GroScript : MonoBehaviour {
 				pos.Add(i);
 			}
 		}
+
 		if (pos.Count != 0) {
 			//needs to be more complex, put onto path
 			int[] chooseFrom = pos.ToArray();
 			int ranIndex = (int)Random.Range (0, pos.Count);
 			int dir = chooseFrom[ranIndex];
-			Debug.Log (dir);
 			Vector3 blopPosition;
 			//xpos
 			if (dir == 0) {
