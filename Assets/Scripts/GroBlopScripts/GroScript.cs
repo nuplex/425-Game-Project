@@ -256,25 +256,34 @@ public class GroScript : MonoBehaviour {
 			blopPosition = new Vector3 (x + 1.0f, y, z);
 		}
 
+		Vector3 yOffset; //prevent z colliding
+
 		if (colorType == RA || colorType == RAA || colorType == RAA) {
 			blop = (GameObject) Instantiate(Resources.Load("Red Blop"));
 			blop.transform.position = blopPosition;
+			yOffset = new Vector3(0, 0.001f, 0);
+			blop.transform.position += yOffset;
 		
 		} else if (colorType == BA || colorType == BAA || colorType == BAAA) {
 			blop = (GameObject) Instantiate(Resources.Load("Blue Blop"));
 			blop.transform.position = blopPosition;
-
+			yOffset = new Vector3(0, 0, 0);
+			blop.transform.position += yOffset;
 		} else if (colorType == GA || colorType == GAA || colorType == GAAA) {
 			blop = (GameObject) Instantiate(Resources.Load("Green Blop"));
 			blop.transform.position = blopPosition;
-
+			yOffset = new Vector3(0, 0.002f, 0);
+			blop.transform.position += yOffset;
 		} else if (colorType == Y) {
 			blop = (GameObject) Instantiate(Resources.Load("Yellow Blop"));
 			blop.transform.position = blopPosition;
-
+			yOffset = new Vector3(0, 0.003f, 0);
+			blop.transform.position += yOffset;
 		} else {
 			blop = (GameObject) Instantiate(Resources.Load("Red Blop"));
 			blop.transform.position = blopPosition;
+			yOffset = new Vector3(0, 0, 0);
+			blop.transform.position += yOffset;
 		}
 
 		currentOutputWait = 0f;
