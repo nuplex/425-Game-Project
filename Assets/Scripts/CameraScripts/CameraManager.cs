@@ -719,16 +719,17 @@ public class CameraManager : MonoBehaviour {
 		int top = gridZ + 1;
 		int bottom = gridZ - 1;
 		int[] surrounding = new int[4];
+		if (right <= 99 && grid[right,gridZ] != null) {
+			surrounding [0] = 1;
+		} else {
+			surrounding [0] = 0;
+		}
 		if (left >= 0 && grid[left,gridZ] != null) {
 			surrounding [1] = 1;
 		} else {
 			surrounding [1] = 0;
 		}
-		if (right <= 99 && grid[right,gridZ] != null) {
-			surrounding [0] = 1;
-		} else {
-			surrounding [0] = 0;
-		}if (top <= 99 && grid[gridX,top] != null) {
+		if (top <= 99 && grid[gridX,top] != null) {
 			surrounding [2] = 1;
 		} else {
 			surrounding [2] = 0;
