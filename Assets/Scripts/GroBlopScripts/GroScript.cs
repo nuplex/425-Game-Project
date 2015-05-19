@@ -229,7 +229,9 @@ public class GroScript : MonoBehaviour {
 				currentGrowthAmount = 0;
 			}
 			currentLevel++;
-			currGrowthNeeded = growthLevels [currentLevel];
+			if(currentLevel != MAX_LEVEL){
+				currGrowthNeeded = growthLevels [currentLevel];
+			}
 		}
 
 	}
