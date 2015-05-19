@@ -144,7 +144,6 @@ public class BlopScript : MonoBehaviour {
 			}
 		}
 
-		Debug.Log (pos.Count);
 		if (pos.Count == 0) {
 			//lol wut
 			Destroy (gameObject);

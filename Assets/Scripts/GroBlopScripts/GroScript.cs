@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GroScript : MonoBehaviour {
 
@@ -243,55 +244,71 @@ public class GroScript : MonoBehaviour {
 		float y = transform.position.y;
 		float z = transform.position.z;
 
-		//needs to be more complex, put onto path
-		int where = (int) Random.Range (1, 5);
-		Vector3 blopPosition;
-		if (where == 1) {
-			blopPosition = new Vector3 (x + 1.0f, y, z);
-		} else if (where == 2) {
-			blopPosition = new Vector3 (x - 1.0f, y, z);
-		} else if (where == 3) {
-			blopPosition = new Vector3 (x, y, z + 1.0f);
-		} else if (where == 4) {
-			blopPosition = new Vector3 (x, y, z - 1.0f);
-		} else {
-			blopPosition = new Vector3 (x + 1.0f, y, z);
-		}
-
-		Vector3 yOffset; //prevent z colliding
-
-		if (colorType == RA || colorType == RAA || colorType == RAA) {
-			blop = (GameObject) Instantiate(Resources.Load("Red Blop"));
-			blop.transform.position = blopPosition;
-			yOffset = new Vector3(0, 0.001f, 0);
-			blop.transform.position += yOffset;
+		int[] possibilities = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().CanMoveTo (x, z);
+		List<int> pos = new List<int> ();
 		
-		} else if (colorType == BA || colorType == BAA || colorType == BAAA) {
-			blop = (GameObject) Instantiate(Resources.Load("Blue Blop"));
-			blop.transform.position = blopPosition;
-			yOffset = new Vector3(0, 0, 0);
-			blop.transform.position += yOffset;
-		} else if (colorType == GA || colorType == GAA || colorType == GAAA) {
-			blop = (GameObject) Instantiate(Resources.Load("Green Blop"));
-			blop.transform.position = blopPosition;
-			yOffset = new Vector3(0, 0.002f, 0);
-			blop.transform.position += yOffset;
-		} else if (colorType == Y) {
-			blop = (GameObject) Instantiate(Resources.Load("Yellow Blop"));
-			blop.transform.position = blopPosition;
-			yOffset = new Vector3(0, 0.003f, 0);
-			blop.transform.position += yOffset;
-		} else {
-			blop = (GameObject) Instantiate(Resources.Load("Red Blop"));
-			blop.transform.position = blopPosition;
-			yOffset = new Vector3(0, 0, 0);
-			blop.transform.position += yOffset;
+		for (int i = 0; i <possibilities.Length; i++) {
+			if(possibilities[i] != 0){
+				pos.Add(i);
+			}
 		}
+		if (pos.Count != 0) {
+			//needs to be more complex, put onto path
+			int where = (int)Random.Range (0, pos.Count);
+			Debug.Log (where);
+			int dir = possibilities[where];
+			Vector3 blopPosition;
+			//xpos
+			if (dir == 0) {
+				blopPosition = new Vector3 (x + 1.0f, y, z);
+			//xneg
+			} else if (dir == 1) {
+				blopPosition = new Vector3 (x - 1.0f, y, z);
+			//zpos
+			} else if (dir == 2) {
+				blopPosition = new Vector3 (x, y, z + 1.0f);
+			//zneg
+			} else if (dir == 3) {
+				blopPosition = new Vector3 (x, y, z - 1.0f);
+			//default xpos
+			} else {
+				blopPosition = new Vector3 (x + 1.0f, y, z);
+			}
 
-		currentOutputWait = 0f;
+			Vector3 yOffset; //prevent z colliding
 
-		AddBlopPoints ();
-		blopsOutput++;
+			if (colorType == RA || colorType == RAA || colorType == RAA) {
+				blop = (GameObject)Instantiate (Resources.Load ("Red Blop"));
+				blop.transform.position = blopPosition;
+				yOffset = new Vector3 (0, 0.001f, 0);
+				blop.transform.position += yOffset;
+			} else if (colorType == BA || colorType == BAA || colorType == BAAA) {
+				blop = (GameObject)Instantiate (Resources.Load ("Blue Blop"));
+				blop.transform.position = blopPosition;
+				yOffset = new Vector3 (0, 0, 0);
+				blop.transform.position += yOffset;
+			} else if (colorType == GA || colorType == GAA || colorType == GAAA) {
+				blop = (GameObject)Instantiate (Resources.Load ("Green Blop"));
+				blop.transform.position = blopPosition;
+				yOffset = new Vector3 (0, 0.002f, 0);
+				blop.transform.position += yOffset;
+			} else if (colorType == Y) {
+				blop = (GameObject)Instantiate (Resources.Load ("Yellow Blop"));
+				blop.transform.position = blopPosition;
+				yOffset = new Vector3 (0, 0.003f, 0);
+				blop.transform.position += yOffset;
+			} else {
+				blop = (GameObject)Instantiate (Resources.Load ("Red Blop"));
+				blop.transform.position = blopPosition;
+				yOffset = new Vector3 (0, 0, 0);
+				blop.transform.position += yOffset;
+			}
+
+			currentOutputWait = 0f;
+
+			AddBlopPoints ();
+			blopsOutput++;
+		}
 	}
 
 	void AddBlopPoints(){
