@@ -130,10 +130,10 @@ public class BlopScript : MonoBehaviour {
 
 
 		//since we are right now randomly determining, lets tend to stay straight
-		float change = Random.Range (1, 5);
-		if (change < 3.8) {
-			return;
-		}
+		//float change = Random.Range (1, 5);
+		//if (change < 3.8) {
+		//	return;
+		//}
 
 		int[] possibilities = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().CanMoveTo (x, z);
 		List<int> pos = new List<int> ();
