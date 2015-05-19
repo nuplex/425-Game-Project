@@ -144,35 +144,37 @@ public class BlopScript : MonoBehaviour {
 			}
 		}
 
+		Debug.Log (pos.Count);
 		if (pos.Count == 0) {
 			//lol wut
-			Destroy(gameObject);
-		}
-
-		int[] chooseFrom = pos.ToArray ();
-
-		int ranIndex = (int) Random.Range (1, pos.Count + 1);
-		int dir = chooseFrom [ranIndex];
-
-		if (dir == OppositeDir(currDir) && pos.Count != 1) {
-			int newIndex = (ranIndex + 1) % chooseFrom.Length;
-			dir = chooseFrom[newIndex];
-		}
-
-		if (dir == X_POS) {
-			currDir = X_POS;
-		} else if (dir == X_NEG) {
-			currDir = X_NEG;
-		} else if (dir == Z_POS) {
-			currDir = Z_POS;
-		} else if (dir == Z_NEG) {
-			currDir = Z_NEG;
+			Destroy (gameObject);
 		} else {
-			currDir = X_POS;
-		}
 
-		lastTurnX = x;
-		lastTurnZ = z;
+			int[] chooseFrom = pos.ToArray ();
+
+			int ranIndex = (int)Random.Range (1, pos.Count + 1);
+			int dir = chooseFrom [ranIndex];
+
+			if (dir == OppositeDir (currDir) && pos.Count != 1) {
+				int newIndex = (ranIndex + 1) % chooseFrom.Length;
+				dir = chooseFrom [newIndex];
+			}
+
+			if (dir == X_POS) {
+				currDir = X_POS;
+			} else if (dir == X_NEG) {
+				currDir = X_NEG;
+			} else if (dir == Z_POS) {
+				currDir = Z_POS;
+			} else if (dir == Z_NEG) {
+				currDir = Z_NEG;
+			} else {
+				currDir = X_POS;
+			}
+
+			lastTurnX = x;
+			lastTurnZ = z;
+		}
 	}
 
 	int OppositeDir(int dir){
