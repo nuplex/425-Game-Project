@@ -264,59 +264,61 @@ public class CameraManager : MonoBehaviour {
 
 	//TODO check to see if this is actually a path!!!
 	void refreshPaths (int gridX, int gridZ) {
-		GameObject curr = grid [gridX, gridZ];
-		if (curr != null) {
-			switch (pathType (gridX, gridZ)) {
-			case "path_a":
-				curr.GetComponent<Renderer> ().material = pathA;
-				curr.tag = "path_a";
-				break;
-			case "path_3t":
-				curr.GetComponent<Renderer> ().material = path3T;
-				curr.tag = "path_3t";
-				break;
-			case "path_3b":
-				curr.GetComponent<Renderer> ().material = path3B;
-				curr.tag = "path_3b";
-				break;
-			case "path_3l":
-				curr.GetComponent<Renderer> ().material = path3L;
-				curr.tag = "path_3l";
-				break;
-			case "path_3r":
-				curr.GetComponent<Renderer> ().material = path3R;
-				curr.tag = "path_3r";
-				break;
-			case "path_ttl":
-				curr.GetComponent<Renderer> ().material = pathTTL;
-				curr.tag = "path_ttl";
-				break;
-			case "path_ttr":
-				curr.GetComponent<Renderer> ().material = pathTTR;
-				curr.tag = "path_ttr";
-				break;
-			case "path_btl":
-				curr.GetComponent<Renderer> ().material = pathBTL;
-				curr.tag = "path_btl";
-				break;
-			case "path_btr":
-				curr.GetComponent<Renderer> ().material = pathBTR;
-				curr.tag = "path_btr";
-				break;
-			case "path_h":
-				curr.GetComponent<Renderer> ().material = pathH;
-				curr.tag = "path_h";
-				break;
-			case "path_v":
-				curr.GetComponent<Renderer> ().material = pathV;
-				curr.tag = "path_v";
-				break;
-			case "path_default":
-				curr.GetComponent<Renderer> ().material = pathDefault;
-				curr.tag = "path_default";
-				break;
-			default:
-				break;
+		if (gridX >= 0 && gridX <= 99 && gridZ >= 0 && gridZ <= 99) {
+			GameObject curr = grid [gridX, gridZ];
+			if (curr != null) {
+				switch (pathType (gridX, gridZ)) {
+				case "path_a":
+					curr.GetComponent<Renderer> ().material = pathA;
+					curr.tag = "path_a";
+					break;
+				case "path_3t":
+					curr.GetComponent<Renderer> ().material = path3T;
+					curr.tag = "path_3t";
+					break;
+				case "path_3b":
+					curr.GetComponent<Renderer> ().material = path3B;
+					curr.tag = "path_3b";
+					break;
+				case "path_3l":
+					curr.GetComponent<Renderer> ().material = path3L;
+					curr.tag = "path_3l";
+					break;
+				case "path_3r":
+					curr.GetComponent<Renderer> ().material = path3R;
+					curr.tag = "path_3r";
+					break;
+				case "path_ttl":
+					curr.GetComponent<Renderer> ().material = pathTTL;
+					curr.tag = "path_ttl";
+					break;
+				case "path_ttr":
+					curr.GetComponent<Renderer> ().material = pathTTR;
+					curr.tag = "path_ttr";
+					break;
+				case "path_btl":
+					curr.GetComponent<Renderer> ().material = pathBTL;
+					curr.tag = "path_btl";
+					break;
+				case "path_btr":
+					curr.GetComponent<Renderer> ().material = pathBTR;
+					curr.tag = "path_btr";
+					break;
+				case "path_h":
+					curr.GetComponent<Renderer> ().material = pathH;
+					curr.tag = "path_h";
+					break;
+				case "path_v":
+					curr.GetComponent<Renderer> ().material = pathV;
+					curr.tag = "path_v";
+					break;
+				case "path_default":
+					curr.GetComponent<Renderer> ().material = pathDefault;
+					curr.tag = "path_default";
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}
@@ -708,8 +710,34 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
+	//x+=1 x-=2 z+=3 z-=4; 0 unavailable, 1 available
 	public int[] CanMoveTo(float x, float z){
+		int gridX = (int) Mathf.Floor (x) + 50;
+		int gridZ = (int) Mathf.Floor (z) + 50;
+		int left = gridX - 1;
+		int right = gridX + 1;
+		int top = gridZ + 1;
+		int bottom = gridZ - 1;
 		int[] surrounding = new int[4];
+		if (left >= 0 && grid[left,gridZ] != null) {
+			surrounding [1] = 1;
+		} else {
+			surrounding [1] = 0;
+		}
+		if (right <= 99 && grid[right,gridZ] != null) {
+			surrounding [0] = 1;
+		} else {
+			surrounding [0] = 0;
+		}if (top <= 99 && grid[gridX,top] != null) {
+			surrounding [2] = 1;
+		} else {
+			surrounding [2] = 0;
+		}
+		if (bottom >= 0 && grid[gridX,bottom] != null) {
+			surrounding [3] = 1;
+		} else {
+			surrounding [3] = 0;
+		}
 		return surrounding;
 	}
 
