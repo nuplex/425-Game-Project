@@ -152,7 +152,7 @@ public class BlopScript : MonoBehaviour {
 
 			int[] chooseFrom = pos.ToArray ();
 
-			int ranIndex = (int)Random.Range (1, pos.Count + 1);
+			int ranIndex = (int)Random.Range (0, pos.Count);
 			int dir = chooseFrom [ranIndex];
 
 			if (dir == OppositeDir (currDir) && pos.Count != 1) {
