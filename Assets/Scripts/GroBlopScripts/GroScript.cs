@@ -158,11 +158,11 @@ public class GroScript : MonoBehaviour {
 		} else if (colorType == RAA) {
 			growthRate = 0.12f;
 			outputRate = 0.8f;
-			purchaseCost = 100;
+			purchaseCost = 1000;
 		} else if (colorType == RAAA) {
 			growthRate = 0.15f;
 			outputRate = 1.2f;
-			purchaseCost = 450;
+			purchaseCost = 45000;
 		} else if (colorType == BA) {
 			growthRate = 0.05f;
 			outputRate = 1f;
@@ -170,11 +170,11 @@ public class GroScript : MonoBehaviour {
 		} else if (colorType == BAA) {
 			growthRate = 0.08f;
 			outputRate = 2f;
-			purchaseCost = 175;
+			purchaseCost = 1750;
 		} else if (colorType == BAAA) {
 			growthRate = 0.1f;
 			outputRate = 5f;
-			purchaseCost = 1000;
+			purchaseCost = 10000;
 		} else if (colorType == GA) {
 			growthRate = 0.5f;
 			outputRate = 0.1f;
@@ -182,15 +182,15 @@ public class GroScript : MonoBehaviour {
 		} else if (colorType == GAA) {
 			growthRate = 0.75f;
 			outputRate = 0.15f;
-			purchaseCost = 175;
+			purchaseCost = 1750;
 		} else if (colorType == GAAA) {
 			growthRate = 1f;
 			outputRate = 0.2f;
-			purchaseCost = 1000;
+			purchaseCost = 10000;
 		} else if (colorType == Y) {
 			growthRate = 0.001f;
 			outputRate = 0.01f;
-			purchaseCost = 25000;
+			purchaseCost = 2500000;
 		} else {
 			growthRate = 0.01f;
 			outputRate = 0.3f;

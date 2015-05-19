@@ -708,6 +708,11 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
+	public int[] canMoveTo(float x, float z){
+		int[] surrounding = new int[4];
+		return surrounding;
+	}
+
 	void OnApplicationQuit () {
 		silhouette.SetColor ("_Color", new Color(0.0f, 0.0f, 0.0f, 0.5f));
 	}
