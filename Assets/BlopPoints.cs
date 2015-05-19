@@ -9,7 +9,8 @@ public class BlopPoints : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		points = 0;
+		points = 100;
+		UpdateTex ();
 	}
 	
 	// Update is called once per frame
