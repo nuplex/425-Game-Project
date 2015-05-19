@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BlopScript : MonoBehaviour {
 
@@ -124,14 +125,39 @@ public class BlopScript : MonoBehaviour {
 		float x = transform.position.x;
 		float z = transform.position.z;
 
+
+
+
+
 		//since we are right now randomly determining, lets tend to stay straight
 		float change = Random.Range (1, 5);
 		if (change < 3.8) {
 			return;
 		}
 
-		//for testing just randomly change direction
-		int dir = (int) Random.Range(1,5);
+		int[] possibilities = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().CanMoveTo (x, z);
+		List<int> pos = new List<int> ();
+
+		for (int i = 0; i <possibilities.Length; i++) {
+			if(possibilities[i] != 0){
+				pos.Add(i+1); //plus one to get match constants
+			}
+		}
+
+		if (pos.Count == 0) {
+			//lol wut
+			Destroy(gameObject);
+		}
+
+		int[] chooseFrom = pos.ToArray ();
+
+		int ranIndex = (int) Random.Range (1, pos.Count + 1);
+		int dir = chooseFrom [ranIndex];
+
+		if (dir == OppositeDir(currDir) && pos.Count != 1) {
+			int newIndex = (ranIndex + 1) % chooseFrom.Length;
+			dir = chooseFrom[newIndex];
+		}
 
 		if (dir == X_POS) {
 			currDir = X_POS;
@@ -149,4 +175,16 @@ public class BlopScript : MonoBehaviour {
 		lastTurnZ = z;
 	}
 
+	int OppositeDir(int dir){
+		if (dir == X_POS) {
+			return X_NEG;
+		} else if (dir == X_NEG) {
+			return X_POS;
+		} else if (dir == Z_POS) {
+			return Z_NEG;
+		} else if (dir == Z_NEG) {
+			return Z_POS;
+		}
+		return X_POS;
+	}
 }
