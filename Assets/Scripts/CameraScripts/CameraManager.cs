@@ -708,7 +708,7 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
-	public int[] canMoveTo(float x, float z){
+	public int[] CanMoveTo(float x, float z){
 		int[] surrounding = new int[4];
 		return surrounding;
 	}

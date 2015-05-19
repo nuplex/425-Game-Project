@@ -36,6 +36,7 @@ TagManager:
   - path_v
   - path_default
   - BP
+  - Camera Manager
   layers:
   - Default
   - TransparentFX
