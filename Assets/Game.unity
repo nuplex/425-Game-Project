@@ -3444,7 +3444,7 @@ MonoBehaviour:
   greenOpaque: {fileID: 2100000, guid: 7332ae1feb2073f4a9946a73e3dafe04, type: 2}
   blueOpaque: {fileID: 2100000, guid: 65a312e2b95096b45b7cb5dedb847321, type: 2}
   yellowOpaque: {fileID: 2100000, guid: 3fd1771a3781eca458bd46103ff23d4d, type: 2}
-  pathDefault: {fileID: 2100000, guid: 1abe4bfc002b2194b86ede54c395fa18, type: 2}
+  pathDefault: {fileID: 2100000, guid: 52001b402a1c806428c420f36b2b1600, type: 2}
   pathA: {fileID: 2100000, guid: 1abe4bfc002b2194b86ede54c395fa18, type: 2}
   pathAS: {fileID: 2100000, guid: 67aa0117aca2b5a4a8b00f072076008a, type: 2}
   pathBTL: {fileID: 2100000, guid: b6fcb0fbe6c646d44bbb447d0f80d51b, type: 2}

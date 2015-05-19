@@ -308,18 +308,25 @@ public class CameraManager : MonoBehaviour {
 
 	// expects cube to be instantiated. places a cube on mouseup and immediately creates another one to use as the silhouette.
 	void placeObject () {
+		Color c = new Color ();
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject()) {
 			if (cube.tag ==  "Red Gro A" || cube.tag == "Red Gro AA" || cube.tag == "Red Gro AAA") {
 				oldMat = redOpaque;
+				c = oldMat.color;
+				silhouette.SetColor ("_Color", new Color(c.r, c.g+(100f/255f), c.b+(100f/255f), 1.0f));
 			} else if (cube.tag ==  "Green Gro A" || cube.tag == "Green Gro AA" || cube.tag == "Green Gro AAA") {
 				oldMat = greenOpaque;
+				c = oldMat.color;
+				silhouette.SetColor ("_Color", new Color(115f/255f, 225f/255f, 110f/255f, 1.0f));
 			} else if (cube.tag ==  "Blue Gro A" || cube.tag == "Blue Gro AA" || cube.tag == "Blue Gro AAA") {
 				oldMat = blueOpaque;
+				c = oldMat.color;
+				silhouette.SetColor ("_Color", new Color(c.r+(100f/255f), c.g+(100f/255f), c.b, 1.0f));
 			} else {
 				oldMat = yellowOpaque;
+				c = oldMat.color;
+				silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b+(100f/255f), 1.0f));
 			}
-			Color c = oldMat.color;
-			silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
 			cube.GetComponent<BoxCollider>().enabled = false;
 			cube.GetComponent<Renderer>().material = silhouette;
 			Cursor.visible = false;
@@ -366,26 +373,21 @@ public class CameraManager : MonoBehaviour {
 			}
 			if (currTarget != null) {
 				Material newMat = null;
-				Color c = new Color ();
 				if (currTarget.tag ==  "Red Gro A" || currTarget.tag == "Red Gro AA" || currTarget.tag == "Red Gro AAA") {
 					oldMat = redOpaque;
-					c = oldMat.color;
-					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					silhouette.SetColor ("_Color", new Color(0f,0f,0f,1f));
 					newMat = silhouette;
 				} else if (currTarget.tag ==  "Green Gro A" || currTarget.tag == "Green Gro AA" || currTarget.tag == "Green Gro AAA") {
 					oldMat = greenOpaque;
-					c = oldMat.color;
-					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					silhouette.SetColor ("_Color", new Color(0f,0f,0f,1f));
 					newMat = silhouette;
 				} else if (currTarget.tag ==  "Blue Gro A" || currTarget.tag == "Blue Gro AA" || currTarget.tag == "Blue Gro AAA") {
 					oldMat = blueOpaque;
-					c = oldMat.color;
-					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					silhouette.SetColor ("_Color", new Color(0f,0f,0f,1f));
 					newMat = silhouette;
 				} else if (currTarget.tag == "Yellow Gro"){
 					oldMat = yellowOpaque;
-					c = oldMat.color;
-					silhouette.SetColor ("_Color", new Color(c.r, c.g, c.b, 0.5f));
+					silhouette.SetColor ("_Color", new Color(0f,0f,0f,1f));
 					newMat = silhouette;
 				} else if (currTarget.tag == "path_a"){
 					oldMat = pathA;
