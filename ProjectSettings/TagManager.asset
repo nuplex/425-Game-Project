@@ -35,6 +35,7 @@ TagManager:
   - path_ttr
   - path_v
   - path_default
+  - BP
   layers:
   - Default
   - TransparentFX

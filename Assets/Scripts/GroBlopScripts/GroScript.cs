@@ -290,6 +290,12 @@ public class GroScript : MonoBehaviour {
 
 		currentOutputWait = 0f;
 
+		AddBlopPoints ();
 		blopsOutput++;
 	}
+
+	void AddBlopPoints(){
+		GameObject.FindGameObjectWithTag ("BP").GetComponent<BlopPoints> ().Add (1);
+	}
+
 }
