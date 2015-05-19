@@ -88,7 +88,7 @@ public class CameraManager : MonoBehaviour {
 		oldTarget = null;
 		currTarget = null;
 		moveSpeed = 20.0f;
-		zoomSpeed = 4.0f;
+		zoomSpeed = 3.0f;
 		maxCamHeight = 50.0f;
 		minCamHeight = 1.0f;
 		grid = new GameObject[100, 100];
@@ -224,7 +224,6 @@ public class CameraManager : MonoBehaviour {
 					int top = gridZ + 1;
 					int bottom = gridZ - 1;
 					cube.GetComponent<MeshCollider>().enabled = true;
-					//TODO determine which path texture to use/if path can be placed down
 					//all
 					if (grid[left,gridZ] != null && grid[right,gridZ] != null && grid[gridX,top] != null && grid[gridX,bottom] != null) {
 						cube.GetComponent<Renderer>().material = pathA;
@@ -298,6 +297,7 @@ public class CameraManager : MonoBehaviour {
 						grid[gridX,gridZ] = cube;
 						cube = (GameObject) Instantiate (pathMaster);
 					}
+					//TODO check surrounding cells to see 
 				}
 			}
 		} else {
