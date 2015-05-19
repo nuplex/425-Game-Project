@@ -58,6 +58,7 @@ public class CameraManager : MonoBehaviour {
 	public Material blueOpaque;
 	public Material yellowOpaque;
 	public Material pathDefault;
+	public Material pathDefaultS;
 	public Material pathA;
 	public Material pathAS;
 	public Material pathBTL;
@@ -397,6 +398,7 @@ public class CameraManager : MonoBehaviour {
 		} else {
 			Cursor.visible = true;
 			resetHighlight();
+			cube.transform.position = new Vector3 (0.0f,1000,0.0f);
 		}
 	}
 
@@ -520,6 +522,9 @@ public class CameraManager : MonoBehaviour {
 				} else if (currTarget.tag == "path_v"){
 					oldMat = pathV;
 					newMat = pathVS;
+				} else if (currTarget.tag == "path_default") {
+					oldMat = pathDefault;
+					newMat = pathDefaultS;
 				}
 				currTarget.GetComponent<Renderer>().material = newMat;
 				if (Input.GetMouseButtonUp (0)) {
@@ -535,6 +540,8 @@ public class CameraManager : MonoBehaviour {
 			}
 			oldTarget = currTarget; 
 		} else {
+			if (EventSystem.current.IsPointerOverGameObject() && oldTarget != null && oldMat != null)
+				oldTarget.GetComponent<Renderer> ().material = oldMat;
 			resetHighlight ();
 			Cursor.visible = true;
 		}
