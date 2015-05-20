@@ -4046,10 +4046,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorsPanel: {fileID: 305509554}
   cube: {fileID: 181058, guid: 5b9ecb60b7be2fb43be04d232fad98c3, type: 2}
-  pathCursor: {fileID: 0}
-  destroyCursor: {fileID: 0}
-  defaultCursor: {fileID: 0}
-  placingCursor: {fileID: 0}
+  pathTexture: {fileID: 2800000, guid: 71433797268fdb14bbd8c49729f4bed1, type: 3}
+  destroyTexture: {fileID: 2800000, guid: b45f981480107154fb782f4a44e8e977, type: 3}
+  defaultTexture: {fileID: 2800000, guid: 3361c327f6ca8b94db24dbcf104e96cc, type: 3}
 --- !u!4 &1219806654
 Transform:
   m_ObjectHideFlags: 0
