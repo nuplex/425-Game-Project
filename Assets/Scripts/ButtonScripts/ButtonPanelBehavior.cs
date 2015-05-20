@@ -25,6 +25,6 @@ public class ButtonPanelBehavior : MonoBehaviour {
 	}
 
 	public void setCursorToPlacing() {
-		Cursor.SetCursor (placingCursor, new Vector2(12, -12), CursorMode.Auto);
+		Cursor.SetCursor (placingCursor, new Vector2(0,24), CursorMode.Auto);
 	}
 }
