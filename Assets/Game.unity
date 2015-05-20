@@ -566,7 +566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1219806657}
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
@@ -4666,6 +4666,7 @@ GameObject:
   - 114: {fileID: 1219806653}
   - 114: {fileID: 1219806655}
   - 114: {fileID: 1219806656}
+  - 114: {fileID: 1219806657}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -4726,6 +4727,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warnPanel: {fileID: 1031282078}
+--- !u!114 &1219806657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219806652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377937c5d694ecb4fb03a9db5535e58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1222434551
 GameObject:
   m_ObjectHideFlags: 0
