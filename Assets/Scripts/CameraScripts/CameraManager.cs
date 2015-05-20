@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
@@ -28,6 +28,8 @@ public class CameraManager : MonoBehaviour {
 	bool destroying;
 	bool pathing;
 
+	bool pressedQuit = false;
+
 	float maxCamHeight;
 	float minCamHeight;
 
@@ -51,6 +53,8 @@ public class CameraManager : MonoBehaviour {
 	GameObject oldTarget;
 	GameObject currTarget;
 	Material oldMat;
+
+	public GameObject warnPanel;
 
 	public Material silhouette;
 	public Material redOpaque;
@@ -86,6 +90,24 @@ public class CameraManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (SaveLoadGame.pressedContinue) {
+			Game gm = SaveLoadGame.loaded;
+			GameObject[] all = gm.all;
+			GameObject[] currAll = UnityEngine.Object.FindObjectsOfType<GameObject> ();
+			
+			for(int i = 0; i < all.Length; i++){
+				if(all[i].gameObject.tag != "Camera Manager"){
+					Destroy(currAll[i]);
+				}
+			}
+			
+			for(int i = 0; i < all.Length; i++){
+				Instantiate(all[i]);
+			}
+			
+			return;
+		}
+
 		oldTarget = null;
 		currTarget = null;
 		moveSpeed = 20.0f;
@@ -672,7 +694,13 @@ public class CameraManager : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-			Application.LoadLevel (0);
+			if(!pressedQuit){
+				pressedQuit = true;
+				warnPanel.SetActive(true);
+			} else {
+				pressedQuit = false;
+				warnPanel.SetActive(false);
+			}
 		}
 
 		if (pathing) {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class BlopPoints : MonoBehaviour {
 
 	public UnityEngine.UI.Text bpText;
@@ -15,9 +16,7 @@ public class BlopPoints : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown ("h")) {
-			Add (10000000);
-		}
+
 	}
 
 	public bool CanBuy(long amt){

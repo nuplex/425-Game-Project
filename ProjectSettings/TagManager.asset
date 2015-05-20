@@ -37,6 +37,12 @@ TagManager:
   - path_default
   - BP
   - Camera Manager
+  - Music Manager
+  - EventSystem
+  - Base
+  - Manager
+  - Highlight
+  - MainLight
   layers:
   - Default
   - TransparentFX

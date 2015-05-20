@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class MenuManager : MonoBehaviour {
 
@@ -17,7 +18,7 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	bool GameFileExists(){
-		return false;
+		return File.Exists (Application.persistentDataPath + "/svs.gd");
 	}
 
 		
@@ -26,6 +27,8 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void LoadGame(){
+		SaveLoadGame.Load ();
+		SaveLoadGame.pressedContinue = true;
 		Application.LoadLevel (1);
 	}
 
