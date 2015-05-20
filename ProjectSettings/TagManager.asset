@@ -43,6 +43,8 @@ TagManager:
   - Manager
   - Highlight
   - MainLight
+  - Cameras
+  - WarnPanel
   layers:
   - Default
   - TransparentFX
