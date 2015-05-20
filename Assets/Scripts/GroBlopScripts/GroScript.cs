@@ -118,8 +118,8 @@ public class GroScript : MonoBehaviour {
 				outputRate += 0.0002f;
 				bpRate += 0.0002f;
 			} else if (colorType == Y){
-				growthRate += 0.0000f;
-				outputRate += 0.0000f;
+				growthRate += 0.00000f;
+				outputRate += 0.00000f;
 				bpRate += 0.0000f;
 			}
 		} else if (other.gameObject.tag == "Blue Blop") {
@@ -154,8 +154,8 @@ public class GroScript : MonoBehaviour {
 				outputRate += 0.00025f;
 				bpRate += 0.001f;
 			} else if (colorType == Y){
-				growthRate += 0.0000f;
-				outputRate += 0.0000f;
+				growthRate += 0.00001f;
+				outputRate += 0.00001f;
 				bpRate += 0.0000f;
 			}
 		} else if (other.gameObject.tag == "Yellow Blop") {
@@ -239,7 +239,7 @@ public class GroScript : MonoBehaviour {
 			purchaseCost = 100000;
 		} else if (colorType == Y) {
 			growthRate = 0.001f;
-			outputRate = 0.01f;
+			outputRate = 0.2f;
 			bpRate = 10f;
 			purchaseCost = 2500000;
 		} else {

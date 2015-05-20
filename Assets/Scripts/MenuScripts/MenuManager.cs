@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class MenuManager : MonoBehaviour {
 
 	public UnityEngine.UI.Button newGame;
@@ -26,5 +27,9 @@ public class MenuManager : MonoBehaviour {
 
 	public void LoadGame(){
 		Application.LoadLevel (1);
+	}
+
+	public void QuitGame(){
+		Application.Quit ();
 	}
 }
