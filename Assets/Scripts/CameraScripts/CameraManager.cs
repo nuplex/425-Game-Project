@@ -431,7 +431,8 @@ public class CameraManager : MonoBehaviour {
 
 	void path () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject ()) {
-			Cursor.visible = false;
+			//Cursor.visible = false;
+			GameObject.Find ("Manager").GetComponent<ButtonPanelBehavior>().setCursorToPlacing();
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			cube.GetComponent<MeshCollider>().enabled = false;
 			cube.transform.position = new Vector3 (p.x, 0.005f, p.z);
@@ -507,7 +508,8 @@ public class CameraManager : MonoBehaviour {
 				}
 			}
 		} else {
-			Cursor.visible = true;
+			//Cursor.visible = true;
+			GameObject.Find ("Manager").GetComponent<ButtonPanelBehavior>().setCursorToPath();
 			resetHighlight();
 			cube.transform.position = new Vector3 (0.0f,1000,0.0f);
 		}
@@ -537,6 +539,7 @@ public class CameraManager : MonoBehaviour {
 			cube.GetComponent<BoxCollider>().enabled = false;
 			cube.GetComponent<Renderer>().material = silhouette;
 			//Cursor.visible = false;
+			GameObject.Find ("Manager").GetComponent<ButtonPanelBehavior>().setCursorToPlacing();
 			//Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
@@ -564,7 +567,8 @@ public class CameraManager : MonoBehaviour {
 				}
 			}
 		} else {
-			Cursor.visible = true;
+			//Cursor.visible = true;
+			GameObject.Find ("Manager").GetComponent<ButtonPanelBehavior>().setCursorToDefault();
 			resetHighlight ();
 			cube.transform.position = new Vector3 (0.0f,1000,0.0f);
 			/*p = activeCamera.ScreenPointToRay(Input.mousePosition);
