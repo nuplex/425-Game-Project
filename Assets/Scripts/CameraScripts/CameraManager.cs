@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
+[System.Serializable]
 public class CameraManager : MonoBehaviour {
 	public Camera camNE;
 	public Camera camSE;
@@ -90,23 +91,6 @@ public class CameraManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (SaveLoadGame.pressedContinue) {
-			Game gm = SaveLoadGame.loaded;
-			GameObject[] all = gm.all;
-			GameObject[] currAll = UnityEngine.Object.FindObjectsOfType<GameObject> ();
-			
-			for(int i = 0; i < all.Length; i++){
-				if(all[i].gameObject.tag != "Camera Manager"){
-					Destroy(currAll[i]);
-				}
-			}
-			
-			for(int i = 0; i < all.Length; i++){
-				Instantiate(all[i]);
-			}
-			
-			return;
-		}
 
 		oldTarget = null;
 		currTarget = null;

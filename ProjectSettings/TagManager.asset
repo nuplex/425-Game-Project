@@ -45,6 +45,7 @@ TagManager:
   - MainLight
   - Cameras
   - WarnPanel
+  - LoadManager
   layers:
   - Default
   - TransparentFX
