@@ -573,14 +573,7 @@ public class CameraManager : MonoBehaviour {
 			cube.transform.position = new Vector3 (0.0f,1000,0.0f);
 			/*p = activeCamera.ScreenPointToRay(Input.mousePosition);
 			cube.transform.position = activeCamera.transform.position + p.direction * 20;*/
-		}
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			placing = false;
-			Cursor.visible = true;
-			resetHighlight ();
-			Destroy (cube);
-		}
-		
+		}	
 	}
 
 	void destroyObject () {
@@ -677,6 +670,10 @@ public class CameraManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.LoadLevel (0);
+		}
 
 		if (pathing) {
 			path ();
