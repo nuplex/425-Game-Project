@@ -536,7 +536,7 @@ public class CameraManager : MonoBehaviour {
 			}
 			cube.GetComponent<BoxCollider>().enabled = false;
 			cube.GetComponent<Renderer>().material = silhouette;
-			Cursor.visible = false;
+			//Cursor.visible = false;
 			//Debug.DrawLine (new Vector3 (0, 0, 0), new Vector3 (p.x, 0, p.z));
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
 			cube.transform.position = new Vector3 (p.x, 0.05f, p.z);
