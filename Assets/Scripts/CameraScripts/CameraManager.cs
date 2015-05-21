@@ -589,10 +589,15 @@ public class CameraManager : MonoBehaviour {
 	void destroyObject () {
 		if (raycast () && !EventSystem.current.IsPointerOverGameObject ()) {
 			highlight.transform.position = new Vector3 (p.x, 0.005f, p.z);
-			Cursor.visible = false;
 			int gridX = (int)(p.x + 49.5);
 			int gridZ = (int)(p.z + 49.5);
 			currTarget = grid [gridX, gridZ];
+			if(currTarget != null) {
+				Cursor.visible = false;
+			} else {
+				GameObject.Find("Manager").GetComponent<ButtonPanelBehavior>().setCursorToDestroy();
+				Cursor.visible = true;
+			}
 			if (currTarget != oldTarget && oldTarget != null) {
 				oldTarget.GetComponent<Renderer> ().material = oldMat;
 			}
