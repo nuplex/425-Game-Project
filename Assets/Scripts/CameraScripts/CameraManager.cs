@@ -515,7 +515,11 @@ public class CameraManager : MonoBehaviour {
 			}
 		} else {
 			//Cursor.visible = true;
-			GameObject.Find("Manager").GetComponent<ButtonPanelBehavior>().setCursorToPath();
+			if (EventSystem.current.IsPointerOverGameObject()){
+				GameObject.Find("Manager").GetComponent<ButtonPanelBehavior>().setCursorToDefault();
+			} else {
+				GameObject.Find("Manager").GetComponent<ButtonPanelBehavior>().setCursorToPath();
+			}
 			resetHighlight();
 			cube.transform.position = new Vector3 (0.0f,1000,0.0f);
 		}
@@ -667,8 +671,14 @@ public class CameraManager : MonoBehaviour {
 			}
 			oldTarget = currTarget; 
 		} else {
-			if (EventSystem.current.IsPointerOverGameObject() && oldTarget != null && oldMat != null)
-				oldTarget.GetComponent<Renderer> ().material = oldMat;
+			if (EventSystem.current.IsPointerOverGameObject()) {
+				GameObject.Find("Manager").GetComponent<ButtonPanelBehavior>().setCursorToDefault();
+				if (oldTarget != null && oldMat != null) {
+					oldTarget.GetComponent<Renderer> ().material = oldMat;
+				}
+			} else {
+				GameObject.Find("Manager").GetComponent<ButtonPanelBehavior>().setCursorToDestroy();
+			}
 			resetHighlight ();
 			Cursor.visible = true;
 		}
