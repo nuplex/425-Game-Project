@@ -80,6 +80,10 @@ public class GroScript : MonoBehaviour {
 			return;
 		}
 
+		if (GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().CanOutput(transform.position.x, transform.position.z) == false) {
+			return;
+		}
+
 		currentBPWait += bpRate * Time.deltaTime;
 		if (currentBPWait >= BP_OUT_AT || currentBPWait <= BP_NEG_OUT) {
 			if(currentBPWait < 0){

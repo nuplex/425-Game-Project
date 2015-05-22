@@ -1,47 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &199260
+--- !u!1 &195106
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 465312}
-  - 33: {fileID: 3341078}
-  - 65: {fileID: 6551052}
-  - 23: {fileID: 2392554}
-  - 114: {fileID: 11436044}
+  - 4: {fileID: 416122}
+  - 33: {fileID: 3361972}
+  - 65: {fileID: 6592082}
+  - 23: {fileID: 2340630}
+  - 114: {fileID: 11427762}
   m_Layer: 0
-  m_Name: Blue Gro A
-  m_TagString: Blue Gro A
+  m_Name: Red Gro AAA
+  m_TagString: Red Gro AAA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &465312
+--- !u!4 &416122
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199260}
+  m_GameObject: {fileID: 195106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1000, z: -2}
-  m_LocalScale: {x: .75, y: .100000001, z: .75}
+  m_LocalPosition: {x: -4, y: 1000, z: 2}
+  m_LocalScale: {x: .75, y: 14, z: .75}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2392554
+--- !u!23 &2340630
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199260}
+  m_GameObject: {fileID: 195106}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 65a312e2b95096b45b7cb5dedb847321, type: 2}
+  - {fileID: 2100000, guid: 8876d625375e0f1448d020227efe6a34, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -55,31 +55,31 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3341078
+--- !u!33 &3361972
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199260}
+  m_GameObject: {fileID: 195106}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6551052
+--- !u!65 &6592082
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199260}
+  m_GameObject: {fileID: 195106}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11436044
+--- !u!114 &11427762
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199260}
+  m_GameObject: {fileID: 195106}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9495aa2cb40bb14084b4ff1cd8de349, type: 3}
@@ -88,17 +88,16 @@ MonoBehaviour:
   colorType: 0
   growthRate: 0
   outputRate: 0
+  bpRate: 0
   growthLevels: []
   currentLevel: 0
   currGrowthNeeded: 0
-  MAX_LEVEL: 200
   blopsTaken: 0
   blopsOutput: 0
   currentOutputWait: 0
+  currentBPWait: 0
   currentGrowthAmount: 0
   currentOutputRate: 0
-  OUTPUT_AT: 1
-  MAX_HEIGHT: 38
   timeToGrow: 0
   timeToOutput: 0
   purchaseCost: 0
@@ -112,5 +111,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 199260}
+  m_RootGameObject: {fileID: 195106}
   m_IsPrefabParent: 1

@@ -8,15 +8,18 @@ public class BlopScript : MonoBehaviour {
 	public float addToOutputRate;
 	public float addToGrowthRate;
 
-	private Vector3 offset;
+	public Vector3 offset;
 	public float speed;
 
-	private int currDir;
+	public int currDir;
 	private const int X_POS = 1, X_NEG = 2, Z_POS = 3, Z_NEG = 4;
 
-	private float lastTurnX;
-	private float lastTurnZ;
-	
+	public float lastTurnX;
+	public float lastTurnZ;
+
+	public float currentX; //needed for saving/loading games
+	public float currentZ; //needed for saving/loading games
+
 	// Use this for initialization
 	void Start () {
 		//should be set by the gro producing it
@@ -34,6 +37,8 @@ public class BlopScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		currentX = transform.position.x;
+		currentZ = transform.position.z;
 		//should be doing path finding and moving on the path here
 	}
 
@@ -193,4 +198,53 @@ public class BlopScript : MonoBehaviour {
 		}
 		return X_POS;
 	}
+	/*
+	public float getLastTurnX(){
+		return lastTurnX;
+	}
+
+	public float getLastTurnZ(){
+		return lastTurnZ;
+	}
+
+	public float getCurrentX(){
+		return currentX;
+	}
+
+	public floa getCurrentZ(){
+		return currentZ;
+	}
+
+	public float getCurrDir(){
+		return currDir;
+	}
+
+	public Vector3 getOffset(){
+		return offset;
+	}
+
+	public float setLastTurnX(){
+		return lastTurnX;
+	}
+	
+	public float setLastTurnZ(){
+		return lastTurnZ;
+	}
+	
+	public float setCurrentX(){
+		return currentX;
+	}
+	
+	public floa setCurrentZ(){
+		return currentZ;
+	}
+	
+	public float setCurrDir(){
+		return currDir;
+	}
+	
+	public Vector3 setOffset(){
+		return offset;
+	}
+	*/
 }

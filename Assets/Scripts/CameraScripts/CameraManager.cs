@@ -88,6 +88,8 @@ public class CameraManager : MonoBehaviour {
 	public Material pathVS;
 
 	private GameObject[,] grid;
+	public const int GRID_LENGTH_X = 100;
+	public const int GRID_LENGTH_Z = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -98,7 +100,7 @@ public class CameraManager : MonoBehaviour {
 		zoomSpeed = 3.0f;
 		maxCamHeight = 50.0f;
 		minCamHeight = 1.0f;
-		grid = new GameObject[100, 100];
+		grid = new GameObject[GRID_LENGTH_X, GRID_LENGTH_Z];
 		placing = false;
 		destroying = false;
 		naturalMode = true;
@@ -907,6 +909,17 @@ public class CameraManager : MonoBehaviour {
 		return surrounding;
 	}
 
+	public bool CanOutput(float x, float z){
+		int[] s = CanOutputTo (x, z);
+		for (int i = 0; i < s.Length; i++) {
+			if(s[i] == 1){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	//x+=1 x-=2 z+=3 z-=4; 0 unavailable, 1 available
 	public int[] CanMoveTo(float x, float z){
 		int gridX = (int) Mathf.Floor (x) + 50;
@@ -942,4 +955,13 @@ public class CameraManager : MonoBehaviour {
 	void OnApplicationQuit () {
 		silhouette.SetColor ("_Color", new Color(0.0f, 0.0f, 0.0f, 0.5f));
 	}
+
+	public GameObject[,] GetGrid(){
+		return grid;
+	}
+
+	public void SetGrid(GameObject[,] inGrid){
+		grid = inGrid;
+	}
+	
 }

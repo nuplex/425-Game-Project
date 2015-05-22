@@ -43,4 +43,13 @@ public class BlopPoints : MonoBehaviour {
 	void UpdateText(){
 		bpText.text = bp + points;
 	}
+
+	public long GetPoints(){
+		return points;
+	}
+
+	public void SetPoints(long amt){
+		points = amt;
+		UpdateText ();
+	}
 }

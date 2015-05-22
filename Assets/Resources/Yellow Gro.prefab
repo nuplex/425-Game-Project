@@ -88,17 +88,16 @@ MonoBehaviour:
   colorType: 0
   growthRate: 0
   outputRate: 0
+  bpRate: 0
   growthLevels: []
   currentLevel: 0
   currGrowthNeeded: 0
-  MAX_LEVEL: 200
   blopsTaken: 0
   blopsOutput: 0
   currentOutputWait: 0
+  currentBPWait: 0
   currentGrowthAmount: 0
   currentOutputRate: 0
-  OUTPUT_AT: 1
-  MAX_HEIGHT: 38
   timeToGrow: 0
   timeToOutput: 0
   purchaseCost: 0

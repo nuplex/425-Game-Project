@@ -12,7 +12,7 @@ public static class SaveLoadGame{
 	public static bool pressedContinue = false;
 
 	public static void Save(){
-		savedGames.Add(Game.current);
+		savedGames.Add(new Game());
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath +"/svs.gd");
 		bf.Serialize(file, savedGames);

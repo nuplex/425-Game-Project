@@ -4,24 +4,23 @@ using System.Collections;
 public class LoadManager : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-
+	
+	void Start(){
 		if (SaveLoadGame.pressedContinue) {
-			Game gm = SaveLoadGame.loaded;
-			GameObject[] all = gm.all;
-			GameObject[] currAll = UnityEngine.Object.FindObjectsOfType<GameObject> ();
-			
-			for(int i = 0; i < all.Length; i++){
-				if(all[i].gameObject.tag != "LoadManager"){
-					Destroy(currAll[i]);
-				}
+
+
+			SaveLoadGame.Load ();
+			Game loaded = SaveLoadGame.loaded;
+
+			GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().SetGrid (loaded.grid.ToGameObjectGrid ());
+			GameObject.FindGameObjectWithTag ("BP").GetComponent<BlopPoints> ().SetPoints (loaded.blopPoints);
+
+			Blop[] blops = loaded.grid.GetBlops ();
+
+			for (int i = 0; i < blops.Length; i++) {
+				blops [i].ToGameObject ();
 			}
-			
-			for(int i = 0; i < all.Length; i++){
-				Instantiate(all[i]);
-			}
-			
-			return;
+
 		}
 
 	}
