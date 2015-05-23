@@ -3026,7 +3026,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a81dd5a6c8aee6c4a90075bfcbdb0300, type: 3}
   - {fileID: 8300000, guid: da643fd17182ebf4ea3115a3b75b0d31, type: 3}
   - {fileID: 8300000, guid: 4d73d10584b9f174aa195180a33cd6d2, type: 3}
-  MIN_SILENCE: 125
+  MIN_SILENCE: 180
   MAX_SILENCE: 600
 --- !u!1 &904399302
 GameObject:

@@ -156,52 +156,52 @@ public class Grid{
 		gros = new Gro[grosLength];
 		
 		int copyStart = 0;
-		for (int i = copyStart, j = 0; i < ra.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < ra.Length; i++, j++) {
 			gros[i] = new Gro(ra[j], ra[j].tag);
 		}
 
 		copyStart += ra.Length;
-		for (int i = copyStart, j = 0; i < raa.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < raa.Length; i++, j++) {
 			gros[i] = new Gro(raa[j], raa[j].tag);
 		}
 
 		copyStart += raa.Length;
-		for (int i = copyStart, j = 0; i < raaa.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < raaa.Length; i++, j++) {
 			gros[i] = new Gro(raaa[j], raaa[j].tag);
 		}
 
 		copyStart += raaa.Length;
-		for (int i = copyStart, j = 0; i < ba.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < ba.Length; i++, j++) {
 			gros[i] = new Gro(ba[j], ba[j].tag);
 		}
 
 		copyStart += ba.Length;
-		for (int i = copyStart, j = 0; i < baa.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < baa.Length; i++, j++) {
 			gros[i] = new Gro(baa[j], baa[j].tag);
 		}
 
 		copyStart += baa.Length;
-		for (int i = copyStart, j = 0; i < baaa.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < baaa.Length; i++, j++) {
 			gros[i] = new Gro(baaa[j], baaa[j].tag);
 		}
 
 		copyStart += baaa.Length;
-		for (int i = copyStart, j = 0; i < ga.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < ga.Length; i++, j++) {
 			gros[i] = new Gro(ga[j], ga[j].tag);
 		}
 
 		copyStart += ga.Length;
-		for (int i = copyStart, j = 0; i < gaa.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < gaa.Length; i++, j++) {
 			gros[i] = new Gro(gaa[j], gaa[j].tag);
 		}
 
 		copyStart += gaa.Length;
-		for (int i = copyStart, j = 0; i < gaaa.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < gaaa.Length; i++, j++) {
 			gros[i] = new Gro(gaaa[j], gaaa[j].tag);
 		}
 
 		copyStart += gaaa.Length;
-		for (int i = copyStart, j = 0; i < y.Length; i++, j++) {
+		for (int i = copyStart, j = 0; j < y.Length; i++, j++) {
 			gros[i] = new Gro(y[j], y[j].tag);
 		}
 		
