@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour {
 
 	private float waitCounter;
 	private int currentWaitTime;
-	public int MIN_SILENCE = 60, MAX_SILENCE = 600;
+	public int MIN_SILENCE = 130, MAX_SILENCE = 600;
 	private int lastChoice = -1; //nothing on start
 
 	//when game starts up
