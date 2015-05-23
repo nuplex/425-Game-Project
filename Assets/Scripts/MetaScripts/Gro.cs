@@ -89,6 +89,7 @@ public class Gro : SaveObject{
 		
 		gs.currentLevel = currentLevel;
 
+		gro.transform.localScale = new Vector3 (gro.transform.localScale.x, gro.transform.localScale.y + (0.01f * currentLevel), gro.transform.localScale.z);
 
 		gs.currGrowthNeeded = currGrowthNeeded;
 		
