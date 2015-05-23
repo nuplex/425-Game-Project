@@ -4,32 +4,25 @@ using System.Collections;
 [System.Serializable]
 public class Grid{
 
-	[SerializeField]
-	public SaveObject[,] grid;
+	//[SerializeField]
+	//public SaveObject[,] grid;
 
 	[SerializeField]
 	public Blop[] blops;
 
-	public int lengthX = 100;
+	[SerializeField]
+	public Path[] paths;
 
-	public int lengthZ = 100;
+	[SerializeField]
+	public Gro[] gros;
 
 	public Grid(){
 		//int lengthX = CameraManager.GRID_LENGTH_X;
 		//int lengthZ = CameraManager.GRID_LENGTH_Z;
-		Debug.Log (lengthX);
-		grid = new SaveObject[lengthX, lengthZ];
-		GameObject[,] currGrid = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ().GetGrid ();
-	
-		for(int i = 0; i < lengthX; i++){
-			for(int j = 0; i <lengthZ; i++){
-				if(currGrid[i,j] == null){
-					grid[i,j] = null;
-					continue;
-				}
-				grid[i,j] = TranslateToGrid(currGrid[i,j]);
-			}
-		}
+
+		gros = GetGros ();
+
+		paths = GetPaths ();
 	
 		blops = GetBlopGameObjects ();
 
@@ -81,6 +74,7 @@ public class Grid{
 		return blops;
 	}
 
+	/*
 	public GameObject[,] ToGameObjectGrid(){
 		Debug.Log("HERE");
 		Debug.Log(lengthX);
@@ -97,10 +91,134 @@ public class Grid{
 		}
 
 		return goGrid;
+	}*/
+
+	public Path[] GetPaths(){
+		Path[] paths;
+
+		CameraManager cm = GameObject.FindGameObjectWithTag ("Camera Manager").GetComponent<CameraManager> ();
+		GameObject[,] grid = cm.GetGrid ();
+		int k = 0;
+		for (int i = 0; i < CameraManager.GRID_LENGTH_X; i++) {
+			for (int j = 0; j < CameraManager.GRID_LENGTH_Z; j++){
+				GameObject o = grid[i,j];
+				if( o == null){
+					continue;
+				}
+				if(o.tag == "path_a" || o.tag == "path_btl" || o.tag == "path_btr" ||
+				              o.tag == "path_3b" || o.tag == "path_3t" || o.tag == "path_3l" ||
+				              o.tag == "path_3r" || o.tag == "path_ttl" || o.tag == "path_ttr" ||
+				              o.tag == "path_h" || o.tag == "path_v" || o.tag == "path_default"){
+					k++;
+				}
+			}
+		}
+
+		paths = new Path[k];
+
+		k = 0;
+		for (int i = 0; i < CameraManager.GRID_LENGTH_X; i++) {
+			for (int j = 0; j < CameraManager.GRID_LENGTH_Z; j++){
+				GameObject o = grid[i,j];
+				if( o == null){
+					continue;
+				}
+				if(o.tag == "path_a" || o.tag == "path_btl" || o.tag == "path_btr" ||
+				   o.tag == "path_3b" || o.tag == "path_3t" || o.tag == "path_3l" ||
+				   o.tag == "path_3r" || o.tag == "path_ttl" || o.tag == "path_ttr" ||
+				   o.tag == "path_h" || o.tag == "path_v" || o.tag == "path_default"){
+					paths[k] = new Path(o, o.tag);
+					k++;
+				}
+			}
+		}
+
+		return paths;
+	}
+
+	public Gro[] GetGros(){
+		Gro[] gros;
+		GameObject[] ra = GameObject.FindGameObjectsWithTag ("Red Gro A");
+		GameObject[] raa = GameObject.FindGameObjectsWithTag ("Red Gro AA");
+		GameObject[] raaa = GameObject.FindGameObjectsWithTag ("Red Gro AAA");
+		GameObject[] ba = GameObject.FindGameObjectsWithTag ("Blue Gro A");
+		GameObject[] baa = GameObject.FindGameObjectsWithTag ("Blue Gro AA");
+		GameObject[] baaa = GameObject.FindGameObjectsWithTag ("Blue Gro AAA");
+		GameObject[] ga = GameObject.FindGameObjectsWithTag ("Green Gro A");
+		GameObject[] gaa = GameObject.FindGameObjectsWithTag ("Green Gro AA");
+		GameObject[] gaaa = GameObject.FindGameObjectsWithTag ("Green Gro AAA");
+		GameObject[] y = GameObject.FindGameObjectsWithTag ("Yellow Gro");
+
+		
+		int grosLength = ra.Length + raa.Length + raaa.Length 
+				+ ba.Length + baa.Length + baaa.Length 
+				+ ga.Length + gaa.Length + gaaa.Length + y.Length;
+		gros = new Gro[grosLength];
+		
+		int copyStart = 0;
+		for (int i = copyStart, j = 0; i < ra.Length; i++, j++) {
+			gros[i] = new Gro(ra[j], ra[j].tag);
+		}
+
+		copyStart += ra.Length;
+		for (int i = copyStart, j = 0; i < raa.Length; i++, j++) {
+			gros[i] = new Gro(raa[j], raa[j].tag);
+		}
+
+		copyStart += raa.Length;
+		for (int i = copyStart, j = 0; i < raaa.Length; i++, j++) {
+			gros[i] = new Gro(raaa[j], raaa[j].tag);
+		}
+
+		copyStart += raaa.Length;
+		for (int i = copyStart, j = 0; i < ba.Length; i++, j++) {
+			gros[i] = new Gro(ba[j], ba[j].tag);
+		}
+
+		copyStart += ba.Length;
+		for (int i = copyStart, j = 0; i < baa.Length; i++, j++) {
+			gros[i] = new Gro(baa[j], baa[j].tag);
+		}
+
+		copyStart += baa.Length;
+		for (int i = copyStart, j = 0; i < baaa.Length; i++, j++) {
+			gros[i] = new Gro(baaa[j], baaa[j].tag);
+		}
+
+		copyStart += baaa.Length;
+		for (int i = copyStart, j = 0; i < ga.Length; i++, j++) {
+			gros[i] = new Gro(ga[j], ga[j].tag);
+		}
+
+		copyStart += ga.Length;
+		for (int i = copyStart, j = 0; i < gaa.Length; i++, j++) {
+			gros[i] = new Gro(gaa[j], gaa[j].tag);
+		}
+
+		copyStart += gaa.Length;
+		for (int i = copyStart, j = 0; i < gaaa.Length; i++, j++) {
+			gros[i] = new Gro(gaaa[j], gaaa[j].tag);
+		}
+
+		copyStart += gaaa.Length;
+		for (int i = copyStart, j = 0; i < y.Length; i++, j++) {
+			gros[i] = new Gro(y[j], y[j].tag);
+		}
+		
+		return gros;
+
 	}
 
 	public Blop[] GetBlops(){
 		return blops;
+	}
+
+	public Path[] GetPathsArray(){
+		return paths;
+	}
+
+	public Gro[] GetGrosArray(){
+		return gros;
 	}
 
 }

@@ -26,7 +26,8 @@ public static class SaveLoadGame{
 			savedGames = (List<Game>)bf.Deserialize (file);
 			file.Close ();
 
-			loaded = savedGames.ToArray()[0];
+			Game[] games = savedGames.ToArray();
+			loaded = games[games.Length - 1];
 		}
 	}
 	

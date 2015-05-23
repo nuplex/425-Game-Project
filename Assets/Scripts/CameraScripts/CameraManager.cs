@@ -874,7 +874,7 @@ public class CameraManager : MonoBehaviour {
 	public bool isPath(GameObject o) {
 		return (o.tag == "path_a" || o.tag == "path_btl" || o.tag == "path_btr" ||
 				o.tag == "path_3b" || o.tag == "path_3t" || o.tag == "path_3l" ||
-				o.tag == "path_3r" || o.tag == "path_ttl" || o.tag == "path_ttl" ||
+				o.tag == "path_3r" || o.tag == "path_ttl" || o.tag == "path_ttr" ||
 				o.tag == "path_h" || o.tag == "path_v" || o.tag == "path_default");
 	}
 
@@ -962,6 +962,87 @@ public class CameraManager : MonoBehaviour {
 
 	public void SetGrid(GameObject[,] inGrid){
 		grid = inGrid;
+	}
+
+	public void manualPlacePath(GameObject path){
+		int gridX = (int) Mathf.Floor (path.transform.position.x) + 50;
+		int gridZ = (int) Mathf.Floor (path.transform.position.z) + 50;
+
+		if (grid[gridX,gridZ] == null) {
+			path.GetComponent<MeshCollider>().enabled = true;
+			
+			switch (pathType (gridX, gridZ)) {
+			case "path_a":
+				path.GetComponent<Renderer>().material = pathA;
+				path.tag = "path_a";
+				break;
+			case "path_3t":
+				path.GetComponent<Renderer>().material = path3T;
+				path.tag = "path_3t";
+				break;
+			case "path_3b":
+				path.GetComponent<Renderer>().material = path3B;
+				path.tag = "path_3b";
+				break;
+			case "path_3l":
+				path.GetComponent<Renderer>().material = path3L;
+				path.tag = "path_3l";
+				break;
+			case "path_3r":
+				path.GetComponent<Renderer>().material = path3R;
+				path.tag = "path_3r";
+				break;
+			case "path_ttl":
+				path.GetComponent<Renderer>().material = pathTTL;
+				path.tag = "path_ttl";
+				break;
+			case "path_ttr":
+				path.GetComponent<Renderer>().material = pathTTR;
+				path.tag = "path_ttr";
+				break;
+			case "path_btl":
+				path.GetComponent<Renderer>().material = pathBTL;
+				path.tag = "path_btl";
+				break;
+			case "path_btr":
+				path.GetComponent<Renderer>().material = pathBTR;
+				path.tag = "path_btr";
+				break;
+			case "path_h":
+				path.GetComponent<Renderer>().material = pathH;
+				path.tag = "path_h";
+				break;
+			case "path_v":
+				path.GetComponent<Renderer>().material = pathV;
+				path.tag = "path_v";
+				break;
+			case "path_default":
+				path.GetComponent<Renderer>().material = pathDefault;
+				path.tag = "path_default";
+				break;
+			}
+			grid[gridX,gridZ] = path;
+			refreshPaths (gridX-1, gridZ);
+			refreshPaths (gridX+1, gridZ);
+			refreshPaths (gridX, gridZ+1);
+			refreshPaths (gridX, gridZ-1);
+			//cube = (GameObject) Instantiate (pathMaster);
+			//TODO check surrounding cells to see 
+		}
+
+	}
+
+	public void manualPlaceGro(GameObject gro){
+		int gridX = (int) Mathf.Floor (gro.transform.position.x) + 50;
+		int gridZ = (int) Mathf.Floor (gro.transform.position.z) + 50;
+
+		if (grid[gridX,gridZ] == null) {
+			grid[gridX,gridZ] = gro;
+			refreshPaths(gridX-1,gridZ);
+			refreshPaths(gridX+1,gridZ);
+			refreshPaths(gridX,gridZ+1);
+			refreshPaths(gridX,gridZ-1);
+		}
 	}
 	
 }
