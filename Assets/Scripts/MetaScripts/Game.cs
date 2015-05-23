@@ -5,7 +5,7 @@ using System.Collections;
 public class Game {
 
 	[SerializeField]
-	public static Game current;
+	public Game current;
 
 	[SerializeField]
 	public long blopPoints;

@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour {
 
 	public UnityEngine.UI.Button newGame;
 	public UnityEngine.UI.Button continueGame;
+	public GameObject loading;
 
 	bool gameExists; 
 
@@ -24,12 +25,18 @@ public class MenuManager : MonoBehaviour {
 		
 	public void NewGame(){
 		Application.LoadLevel (1);
+		if(Application.isLoadingLevel) {
+			loading.SetActive (true);
+		}
 	}
 
 	public void LoadGame(){
 		SaveLoadGame.Load ();
 		SaveLoadGame.pressedContinue = true;
 		Application.LoadLevel (1);
+		if(Application.isLoadingLevel) {
+			loading.SetActive (true);
+		}
 	}
 
 	public void QuitGame(){
