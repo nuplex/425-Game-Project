@@ -88,6 +88,8 @@ public class Gro : SaveObject{
 		gs.bpRate = bpRate;
 		
 		gs.currentLevel = currentLevel;
+
+
 		gs.currGrowthNeeded = currGrowthNeeded;
 		
 		gs.blopsTaken = blopsTaken;
